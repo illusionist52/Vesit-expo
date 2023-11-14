@@ -1,0 +1,12 @@
+{
+  "name": "vesit_expo",
+  "version": "1.0.0",
+  "description": "A great place for college students to explore about the placements of their colleges and get idea directly from seniors.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
