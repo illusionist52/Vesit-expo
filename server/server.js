@@ -1,17 +1,18 @@
-//IMPORTS :
-const express = require("express");
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
 
-const app = express();
+const app = require('./app');
+const mongoose = require('mongoose');
 
-app.use(express.json());
+const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DB_PASSWORD);
 
-
-//REQUESTS : 
-app.get("/", (req, res) => {
-    res.send("Hello World");
+mongoose.connect(DB).then((con) => {
+    console.log("DB CONNECTION DONE :)")
 })
 
-const port = 3002;
+
+// SERVER START :
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
-    console.log(`Running on ${port}..`);
+    console.log(`App running on port - ${port}..`);
 })
