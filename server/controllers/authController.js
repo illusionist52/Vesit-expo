@@ -1,69 +1,55 @@
-const jwt = require('jsonwebtoken');
-const User = require('./../model/userModal');
+const jwt = require("jsonwebtoken");
+const User = require("./../model/userModal");
+const catchAsync = require("./../utils/catchAsync");
+const AppError = require("./../utils/appError");
 
-exports.signup = async (req, res, next) => {
-    try{
-        const newUser = await User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-            confirmPassword: req.body.confirmPassword,
-        });
-
-        // JWT IMPLEMENTATION : 
-        const token = jwt.sign( { id: newUser._id }, process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRES_IN
-        } )
-
-        res.status(200).json({
-            message: "success",
-            token,
-            data:{
-                user : newUser
-            }
-        });
-    }
-    catch(err){
-        res.status(404).json({
-            message: "fail",
-            data:{
-                user : err
-            }
-        });
-    }
+const signToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
 };
 
-exports.login = (req, res, next) => {
-    try{
-        const email = req.body.email;
-        const password = req.body.password;
+exports.signup = catchAsync(async (req, res, next) => {
+  const newUser = await User.create({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    confirmPassword: req.body.confirmPassword,
+  });
 
-        console.log(email, password);
+  // JWT IMPLEMENTATION :
+  const token = signToken(newUser._id);
 
-        // 1) If email and password exists : 
-        if( !email || !password ){
-            return res.status(400).json({
-                message : "Please provide both an email address and a password"
-            });
-        }
+  res.status(200).json({
+    message: "success",
+    token,
+    data: {
+      user: newUser,
+    },
+  });
+});
 
-        // 2) Verify password or email is same or not : 
-        // const user = User.findOne({ email }).select('+password');
+exports.login = catchAsync(async (req, res, next) => {
+  const { email, password } = req.body;
 
-        // if(user._id === )
+  console.log(email, password);
 
+  // 1) If email and password exists :
+  if (!email || !password) {
+    return next(new AppError("Please provide email and password!", 400));
+  }
 
-        // 3) Send token, cuz first two steps completed 😊🫂
-        const token = '';
-        res.status(200).json({
-            message: 'Sign up successful',
-            token
-        })
-    }
-    catch(err){
-        res.status(500).json({
-            message: "fail",
-            error: err
-        });
-    }
-}
+  // 2) Verify password or email is same or not :
+  const user = await User.findOne({ email }).select("+password");
+
+  if (!user || !(await user.correctPassword(password, user.password))) {
+    return next(new AppError("Email or Password is incorrect", 401));
+  }
+
+  // 3) Send token, cuz first two steps completed 😊🫂
+  const token = signToken(user._id);
+  res.status(200).json({
+    message: "Sign up successful",
+    token,
+  });
+});
