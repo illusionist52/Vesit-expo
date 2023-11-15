@@ -1,6 +1,7 @@
 //IMPORTS :
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 
 // MANUAL FILE IMPORTS :
 const userRoutes = require('./routes/userRoutes');
@@ -12,6 +13,7 @@ if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'));
 }
 app.use(express.json());
+app.use(cors());
 
 console.log(process.env.NODE_ENV);
 app.use((req, res, next) => {
