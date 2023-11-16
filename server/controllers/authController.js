@@ -10,6 +10,20 @@ const signToken = (id) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
+
+  // 1) Check if the user has all the fields filled : 
+  const {name, email, password, confirmPassword} = req.body;
+  if(!name || !email || !password || !confirmPassword){
+    return next(new AppError('Please fill all fields',400));
+  }
+
+  // 2) Check for existing user with same email address :
+  const alreadyExistUser = await User.findOne({email});
+  if(alreadyExistUser){
+    return next(new AppError('Email is taken! Please login instead',400));
+  }
+
+  // 3) If above both checks are passed, then start the process of creating new user : 
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
@@ -17,9 +31,10 @@ exports.signup = catchAsync(async (req, res, next) => {
     confirmPassword: req.body.confirmPassword,
   });
 
-  // JWT IMPLEMENTATION :
+  //4) Creating JWT token for the authorized user :
   const token = signToken(newUser._id);
 
+  //5) Saving the imformation in the database : 
   res.status(200).json({
     message: "success",
     token,
