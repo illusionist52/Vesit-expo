@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 // ERROR HANDLERS :
-const AppError = require("./utils/appError");
+const AppError = require('./utils/appError');
 const globalErrorHandler = require("./controllers/errorController");
 
 // MANUAL FILE IMPORTS :
@@ -23,6 +23,7 @@ app.use(cors());
 // console.log(process.env.NODE_ENV);
 // app.use((req, res, next) => {
 //     console.log("Hello from Middleware 🫂");
+//     console.log(req.headers);
 //     next();
 // })
 
