@@ -31,11 +31,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please confirm your password"],
     validate: {
-      validator: function (el) {
+      validator: function (el) { 
         return el === this.password;
       },
     },
     message: "Password and Confirm Password do not match!",
+  },
+  role:{
+    type: String,
+    default: 'user'
   },
   passwordChangedAt: Date,
   passwordResetToken: String,
