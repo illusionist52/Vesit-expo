@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const mongoose = require("mongoose");
 // const validator = require('validator');
 const bcrypt = require("bcryptjs");
@@ -9,7 +10,7 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    require: [true, "Please provide your EMail ID"],
+    required: [true, "Please provide your EMail ID"],
     unique: true,
     validate: {
       validator: function (el) {
@@ -36,6 +37,9 @@ const userSchema = new mongoose.Schema({
     },
     message: "Password and Confirm Password do not match!",
   },
+  passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
 });
 
 // Checks if the USER password and saved are password are SAME OR NOT :
@@ -45,6 +49,43 @@ userSchema.methods.correctPassword = async function (
 ) {
   return await bcrypt.compare(candidatePassword, userPassword);
 };
+
+userSchema.methods.changePasswordAfter = function (JWTTimeStamp) {
+  if (this.passwordChangedAt) {
+    const userTime = this.passwordChangedAt.getTime() / 1000;
+    // console.log("Time stamp : ", userTime, JWTTimeStamp);
+
+    return userTime > JWTTimeStamp;
+  }
+
+  return false;
+};
+
+userSchema.methods.createPasswordResetToken = function () {
+  const resetToken = crypto.randomBytes(32).toString("hex");
+
+  this.passwordResetToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+
+  console.log({ resetToken }, this.passwordResetToken);
+
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
+};
+
+userSchema.pre("save", function (next) {
+  // Only run this function if password was actually modified
+  if (!this.isModified("password" || this.isNew)) {
+    next();
+  }
+
+  this.passwordChangedAt = Date.now() - 2000;
+
+  next();
+});
 
 // DEELTE confirmPassword and HASHES the password :
 userSchema.pre("save", async function (next) {
