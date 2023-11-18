@@ -31,19 +31,24 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please confirm your password"],
     validate: {
-      validator: function (el) { 
+      validator: function (el) {
         return el === this.password;
       },
     },
     message: "Password and Confirm Password do not match!",
   },
-  role:{
+  role: {
     type: String,
-    default: 'user'
+    default: "user",
   },
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,
+  active: {
+    type: Boolean,
+    default: true,
+    select: false,
+  },
 });
 
 // Checks if the USER password and saved are password are SAME OR NOT :
@@ -54,7 +59,7 @@ userSchema.methods.correctPassword = async function (
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
-userSchema.methods.changePasswordAfter = function (JWTTimeStamp) {
+userSchema.methods.changePasswordAfter = function (JWTTimeStamp) { 
   if (this.passwordChangedAt) {
     const userTime = this.passwordChangedAt.getTime() / 1000;
     // console.log("Time stamp : ", userTime, JWTTimeStamp);
@@ -101,6 +106,11 @@ userSchema.pre("save", async function (next) {
 
   // Delete the confirm password from saving into the Database :
   this.confirmPassword = undefined;
+});
+
+userSchema.pre(/^find/, function(next) {
+  this.find({ active: { $ne: false } });
+  next();
 });
 
 const User = mongoose.model("User", userSchema);

@@ -33,7 +33,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   // 2) Update required Data :
   const filteredFields = filterObj(req.body, "name", "email");
 
-  
+
   const updateUser = await User.findByIdAndUpdate(
     req.user._id,
     filteredFields,
@@ -50,6 +50,19 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+
+exports.deleteMe =  catchAsync(async(req, res, next) => {
+  await User.findByIdAndDelete(req.user._id, { active: false });
+
+  res.status(204).json({
+    status: 'success',
+    message: 'Your account is succesfully deactivated',
+    data: null
+  })
+})
+
+
 
 exports.createUser = catchAsync((req, res, next) => {
   res.status(500).json({
