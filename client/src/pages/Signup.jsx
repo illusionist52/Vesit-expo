@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { signup, store1 } from "../Users/userSlice";
+import { signup } from "../Users/userSlice";
 import { useDispatch } from "react-redux";
 import createUser from "../services/apiUsers";
 
@@ -12,8 +12,7 @@ function Signup() {
       <form
         onSubmit={handleSubmit((data) => {
           dispatch(signup(data));
-          store1.dispatch({type: "signup", payload: data})
-          console.log(store1.getState());
+          
         })}
       >
         <label>Name:</label>
@@ -26,6 +25,7 @@ function Signup() {
         <input type="password" id="password" {...register("password")} />
         <br />
         <label>Confirm password:</label>
+        
         <input
           type="password"
           id="confirmPrassword"

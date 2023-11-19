@@ -1,67 +1,221 @@
-import { applyMiddleware, createStore } from "@reduxjs/toolkit";
+import { applyMiddleware, createSlice, createStore , configureStore} from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 import thunk from "redux-thunk";
-
 const initialState = {
   name: "",
   email: "",
   password: "",
-  confirm_password: "",
+  token: ""
 };
 
-export default function userReducer(state = { email: "" }, action) {
-  switch (action.type) {
-    case "login":
-      return {
-        ...state,
-        email: action.payload.email,
-        password: action.payload.password,
-      };
-
-    case "signup":
-      return {
-        ...state,
-        name: action.payload.name,
-        email: action.payload.email,
-        password: action.payload.password,
-        confirm_password: action.payload.confirm_password,
-      };
-
-    case "logout":
-      return { state: initialState };
+const userSlice = createSlice({
+  name: "user",
+  initialState,
+  reducers: {
+    login(state, action){
+      state.name= action.payload.name;
+      state.email= action.payload.email;
+      state.password= action.payload.password;
+      state.token= action.payload.token;
+    },
+    signup(state, action){
+      state.name= action.payload.name;
+      state.email= action.payload.email;
+      state.password= action.payload.password;
+      state.token= action.payload.token;
+    },
+    logout(state, action){
+      state= initialState
+    }
   }
-}
+})
 
-export const store1 = createStore(userReducer, applyMiddleware(thunk));
+export const {logout} = userSlice.actions;
 
 export function login(data) {
-  return { type: "login", payload: data };
-}
-
-export function logout() {
-  return { type: "logout" };
-}
-
-export function signup(data) {
-  // return { type: "signup", payload: data };
-  return async function (dispatch, getState) {
-    try {
-      const res = await fetch(`http://localhost:3002/api/v1/users/signup`, {
+    // return { type: "login", payload: data };
+    return async function (dispatch, getState){
+      let name, email, password, token = ""
+      const res = await fetch(`http://localhost:3002/api/v1/users/login`,{
         method: "POST",
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json ",
         },
       });
-
-      toast.success("user added successfully");
-      console.log(res.json());
-      dispatch({ type: "signup", payload: data });
-    } catch {
-      throw new Error("something went wrong");
+      
+      const login_data_recieved = await res.json();
+      console.log(name, email,password)
+      if(login_data_recieved.token){
+        toast.success("Logged in successfully")
+        const userData = login_data_recieved.data.user
+        name= userData.name;
+        email = userData.email;
+        password = userData.password;
+        token=login_data_recieved.token
+        }
+        else{
+          toast.error(login_data_recieved.message)
+        }
+        data = {...data,name, token}
+        console.log(login_data_recieved);
+        dispatch({type: "user/login", payload: data });
+        console.log(store.getState());
     }
-  };
-}
+  }
+  
+  
+  
+  export function signup(data) {
+    // return { type: "signup", payload: data };
+    return async function (dispatch, getState) {
+      
+      try {
+        let token = ""
+        const res = await fetch(`http://localhost:3002/api/v1/users/signup`, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json ",
+          },
+        });
+  
+        const data1 = await res.json();
+        if(data1.token){
+        toast.success("Acount created successfully")
+        token=data1.token
+        }
+        else{
+          toast.error(data1.message)
+        }
+        data= {...data, token}
+        console.log(data1)
+        dispatch({ type: "user/signup", payload: data });
+        console.log(store.getState());
+        
+      } catch {
+        throw new Error("something went wrong");
+      }
+    };
+  }
 
-console.log(store1.getState());
+
+
+
+
+
+const store = configureStore({
+  reducer: {
+    user: userSlice.reducer
+  },
+})
+
+export default store;
+
+
+
+
+// LEGACY CODE
+
+// export default function userReducer(state = initialState, action) {
+//   switch (action.type) {
+//     case "login":
+//       return {
+//         ...state,
+//         name: action.payload.name,
+//         email: action.payload.email,
+//         password: action.payload.password,
+//         token: action.payload.token
+//       };
+
+//     case "signup":
+//       return {
+//         ...state,
+//         name: action.payload.name,
+//         email: action.payload.email,
+//         password: action.payload.password,
+//         token: action.payload.token
+//       };
+
+//     case "logout":
+//       return  state ;
+
+//     default:
+//       return state;
+//   }
+// }
+
+
+// export function logout() {
+//   return { type: "logout" };
+// }
+
+// export function login(data) {
+//   // return { type: "login", payload: data };
+//   return async function (dispatch, getState){
+//     let name, email, password, token = ""
+//     const res = await fetch(`http://localhost:3002/api/v1/users/login`,{
+//       method: "POST",
+//       body: JSON.stringify(data),
+//       headers: {
+//         "Content-Type": "application/json ",
+//       },
+//     });
+    
+//     const login_data_recieved = await res.json();
+//     console.log(name, email,password)
+//     if(login_data_recieved.token){
+//       toast.success("Logged in successfully")
+//       const userData = login_data_recieved.data.user
+//       name= userData.name;
+//       email = userData.email;
+//       password = userData.password;
+//       token=login_data_recieved.token
+//       }
+//       else{
+//         toast.error(login_data_recieved.message)
+//       }
+//       data = {...data,name, token}
+//       console.log(login_data_recieved);
+//       dispatch({type: "login", payload: data });
+//       console.log(store.getState());
+//   }
+// }
+
+
+
+// export function signup(data) {
+//   // return { type: "signup", payload: data };
+//   return async function (dispatch, getState) {
+    
+//     try {
+//       let token = ""
+//       const res = await fetch(`http://localhost:3002/api/v1/users/signup`, {
+//         method: "POST",
+//         body: JSON.stringify(data),
+//         headers: {
+//           "Content-Type": "application/json ",
+//         },
+//       });
+
+//       const data1 = await res.json();
+//       if(data1.token){
+//       toast.success("Acount created successfully")
+//       token=data1.token
+//       }
+//       else{
+//         toast.error(data1.message)
+//       }
+//       data= {...data, token}
+//       console.log(data1)
+//       dispatch({ type: "signup", payload: data });
+//       console.log(store.getState());
+      
+//     } catch {
+//       throw new Error("something went wrong");
+//     }
+//   };
+// }
+
+
 
