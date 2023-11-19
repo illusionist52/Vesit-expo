@@ -108,7 +108,7 @@ userSchema.pre("save", async function (next) {
   this.confirmPassword = undefined;
 });
 
-userSchema.pre(/^find/, function(next) {
+userSchema.pre(/find$/, function(next) {
   this.find({ active: { $ne: false } });
   next();
 });

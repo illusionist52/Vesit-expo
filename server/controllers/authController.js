@@ -97,11 +97,8 @@ exports.protect = catchAsync(async (req, res, next) => {
   //2) Verification the token --> ErrorController of prod mode not working
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
-  // console.log(decoded);
-  // console.log(decoded.id)
   //3) If user still exists.
   const currentUser = await User.findById(decoded.id);
-  console.log(currentUser);
   if (!currentUser) {
     return next(new AppError("User does not exist", 401));
   }
