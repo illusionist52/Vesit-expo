@@ -51,90 +51,88 @@ const userSchema = new mongoose.Schema({
   },
 
   // PROFILE MODEL EMBEDDING STARTS :
-  // avatar: {
-  //   type: String,
-  //   default: "/images/default-avatar.png",
-  // },
-  // portfolioWebsite: {
-  //   type: String,
-  //   default: null
-  // },
-  // branch: {
-  //   type: String,
-  // },
-  // collegeStartYear: {
-  //   type: Date,
-  //   required: true,
-  // },
-  // shortBio: {
-  //   type: String,
-  //   minlength: 20,
-  //   maxlength: 220,
-  //   required: true,
-  // },
-  // longDesc: {
-  //   type: String,
-  //   minlength: 200,
-  //   maxlength: 2600,
-  //   default: null,
-  // },
-  // skills: [
-  //   {
-  //     type: String,
-  //     default: null,
-  //   },
-  // ],
-  // experience: [
-  //   {
-  //     companyName: {
-  //       type: String,
-  //       required: [true, "Please mention your Company Name"],
-  //       maxlength: 50,
-  //     },
-  //     position: {
-  //       type: String,
-  //       required: [true, "Mention the Position of your Job/Internship"],
-  //       maxlength: 100,
-  //     },
-  //     fromDate: {
-  //       type: Date,
-  //       required: true,
-  //     },
-  //     toDate: {
-  //       type: Date,
-  //       required: true,
-  //     },
-  //     workType: {
-  //       type: String,
-  //       enum: ["Job", "Internship"],
-  //       required: [true, "Please mention the type of work you have done."],
-  //     },
-  //     default: null,
-  //   },
-  // ],
-  // achievements: [
-  //   {
-  //     type: String,
-  //     default: null,
-  //   },
-  // ],
-  // projects: [
-  //   {
-  //     projectTitle: {
-  //       type: String,
-  //       maxlength: 100,
-  //     },
-  //     projectDesc: {
-  //       type: String,
-  //       maxlength: 200,
-  //     },
-  //     techStackUsed: {
-  //       type: String,
-  //       maxlength: 100,
-  //     },
-  //     default: null,
-  //   },
-  // ]
+  avatar: {
+    type: String,
+    default: "/images/default-avatar.png",
+  },
+  portfolioWebsite: {
+    type: String,
+    default: null
+  },
+  branch: {
+    type: String,
+  },
+  collegeStartYear: {
+    type: Date,
+    required: true,
+  },
+  shortBio: {
+    type: String,
+    minlength: 20,
+    maxlength: 220,
+    required: true,
+  },
+  longDesc: {
+    type: String,
+    minlength: 200,
+    maxlength: 2600,
+    default: null,
+  },
+  skills: [
+    {
+      type: String,
+      default: null,
+    },
+  ],
+  experience: [
+    {
+      companyName: {
+        type: String,
+        required: [true, "Please mention your Company Name"],
+        maxlength: 50,
+      },
+      position: {
+        type: String,
+        required: [true, "Mention the Position of your Job/Internship"],
+        maxlength: 100,
+      },
+      fromDate: {
+        type: Date,
+        required: true,
+      },
+      toDate: {
+        type: Date,
+        required: true,
+      },
+      workType: {
+        type: String,
+        enum: ["Job", "Internship"],
+        required: [true, "Please mention the type of work you have done."],
+      },
+    },
+  ],
+  achievements: [
+    {
+      type: String,
+      default: null,
+    },
+  ],
+  projects: [
+    {
+      projectTitle: {
+        type: String,
+        maxlength: 100,
+      },
+      projectDesc: {
+        type: String,
+        maxlength: 200,
+      },
+      techStackUsed: {
+        type: String,
+        maxlength: 100,
+      },
+    },
+  ]
 });
 
 // Checks if the USER password and saved are password are SAME OR NOT :
