@@ -49,6 +49,92 @@ const userSchema = new mongoose.Schema({
     default: true,
     select: false,
   },
+
+  // PROFILE MODEL EMBEDDING STARTS :
+  // avatar: {
+  //   type: String,
+  //   default: "/images/default-avatar.png",
+  // },
+  // portfolioWebsite: {
+  //   type: String,
+  //   default: null
+  // },
+  // branch: {
+  //   type: String,
+  // },
+  // collegeStartYear: {
+  //   type: Date,
+  //   required: true,
+  // },
+  // shortBio: {
+  //   type: String,
+  //   minlength: 20,
+  //   maxlength: 220,
+  //   required: true,
+  // },
+  // longDesc: {
+  //   type: String,
+  //   minlength: 200,
+  //   maxlength: 2600,
+  //   default: null,
+  // },
+  // skills: [
+  //   {
+  //     type: String,
+  //     default: null,
+  //   },
+  // ],
+  // experience: [
+  //   {
+  //     companyName: {
+  //       type: String,
+  //       required: [true, "Please mention your Company Name"],
+  //       maxlength: 50,
+  //     },
+  //     position: {
+  //       type: String,
+  //       required: [true, "Mention the Position of your Job/Internship"],
+  //       maxlength: 100,
+  //     },
+  //     fromDate: {
+  //       type: Date,
+  //       required: true,
+  //     },
+  //     toDate: {
+  //       type: Date,
+  //       required: true,
+  //     },
+  //     workType: {
+  //       type: String,
+  //       enum: ["Job", "Internship"],
+  //       required: [true, "Please mention the type of work you have done."],
+  //     },
+  //     default: null,
+  //   },
+  // ],
+  // achievements: [
+  //   {
+  //     type: String,
+  //     default: null,
+  //   },
+  // ],
+  // projects: [
+  //   {
+  //     projectTitle: {
+  //       type: String,
+  //       maxlength: 100,
+  //     },
+  //     projectDesc: {
+  //       type: String,
+  //       maxlength: 200,
+  //     },
+  //     techStackUsed: {
+  //       type: String,
+  //       maxlength: 100,
+  //     },
+  //     default: null,
+  //   },
+  // ]
 });
 
 // Checks if the USER password and saved are password are SAME OR NOT :
@@ -59,10 +145,10 @@ userSchema.methods.correctPassword = async function (
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
-userSchema.methods.changePasswordAfter = function (JWTTimeStamp) { 
+userSchema.methods.changePasswordAfter = function (JWTTimeStamp) {
   if (this.passwordChangedAt) {
     const userTime = this.passwordChangedAt.getTime() / 1000;
-    // console.log("Time stamp : ", userTime, JWTTimeStamp);
+    // console.log('Time stamp : ', userTime, JWTTimeStamp);
 
     return userTime > JWTTimeStamp;
   }
@@ -108,7 +194,7 @@ userSchema.pre("save", async function (next) {
   this.confirmPassword = undefined;
 });
 
-userSchema.pre(/find$/, function(next) {
+userSchema.pre(/find$/, function (next) {
   this.find({ active: { $ne: false } });
   next();
 });
