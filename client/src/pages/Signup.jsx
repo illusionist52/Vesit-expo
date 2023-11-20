@@ -15,7 +15,7 @@ function Signup() {
           
         })}
       >
-        <label>Name:</label>
+        <label className="text-xl">Name:</label>
         <input type="text" id="name" {...register("name")} />
         <br />
         <label>College email:</label>
