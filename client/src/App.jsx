@@ -8,6 +8,9 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import "./Users/userSlice";
 import { Toaster } from "react-hot-toast";
+import Applayout from "./pages/Applayout";
+import ProfilePage from "./pages/ProfilePage";
+import ProfileDetails from "./pages/ProfileDetails";
 
 
 function App() {
@@ -15,10 +18,15 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
+          <Route element={<Applayout/>}>
           <Route path="/" element={<Homepage />} />
           <Route path="/forums" element={<ForumPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/companies" element={<CompaniesPages />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          
+          </Route>
+          <Route path="/details" element={<ProfileDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
