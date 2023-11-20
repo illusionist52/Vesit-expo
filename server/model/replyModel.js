@@ -5,13 +5,19 @@ const Reply = mongoose.Schema({
     replies: [
         {
            postName: {
-            
+                type: mongoose.Schema.ObjectId,
+                ref: Post
+           },
+           CONTENT: {
+                type: String
            }
         }
     ]
 })
 
+// FLOW OF DATA REFERENCING //
+// USER --> POST --> COMMENT --> REPLIES
 
-// WHAT IS REACT?
-// ---> React is ... UserA
-// -->  React is ... UserB
+// WHAT IS REACT?  --> POST
+// |     ---> React is a Js library.... Usmaan
+// -->  React is ... Nilanchal
