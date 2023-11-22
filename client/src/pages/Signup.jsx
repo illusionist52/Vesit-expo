@@ -8,14 +8,14 @@ function Signup() {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   return (
-    <div>
+    <div className="">
       <form
         onSubmit={handleSubmit((data) => {
           dispatch(signup(data));
           
         })}
       >
-        <label className="text-xl">Name:</label>
+        <label className="text-xl font-semibold text-lavender">Name:</label>
         <input type="text" id="name" {...register("name")} />
         <br />
         <label>College email:</label>
