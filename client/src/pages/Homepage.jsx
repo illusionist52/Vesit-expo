@@ -1,8 +1,11 @@
 import React from 'react'
+import MIlestones from '../Components/MIlestones'
 
 function Homepage() {
   return (
-    <div>Homepage</div>
+    <div>
+      {/* <MIlestones/> */}
+    </div>
   )
 }
 

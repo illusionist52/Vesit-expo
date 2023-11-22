@@ -1,30 +1,34 @@
 import React from 'react'
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import Button from './Button'
 function Navbar() {
+  const navigate = useNavigate();
+
+  function Navigator(to){
+    navigate(to);
+    
+  }
   return (
-    <nav className='sm:mx-10 sm:text-sm p-8 md:mx-[20rem] md:rounded-3xl md:my-5 h-20 md:text-2xl text-lavender font-bold bg-slate-200'>
-      
-      <ul className='flex items-center h-5 justify-around'>
+    <nav className=' sm:text-xs p-8 md:mx-[15rem] md:rounded-3xl md:my-5 flex justify-between items-center h-20 md:text-2xl max-w-[70rem] text-lavender font-bold bg-slate-200'>
+     <img className='w-[80px]' src='./../../public/img-1.jpg'/>
+      <ul className='flex md:items-center md:h-5 gap-7 justify-around'>
+        
         <li>
-          EXPO
+          <NavLink to="experiences">Experiences</NavLink>
         </li>
         <li>
-          <span>|</span>
+          <NavLink to="forums">Forums</NavLink>
         </li>
         <li>
-          <NavLink>Forums</NavLink>
-        </li>
-        <li>
-          <NavLink>Experiences</NavLink>
-        </li>
-        <li>
-          <NavLink>Companies</NavLink>
+          <NavLink to="companies">Companies</NavLink>
           
         </li>
-        <Button style={"secondary"}>SIgnup</Button>
-        <Button>Login</Button>
       </ul>
+        <div className='flex gap-2'>
+        <Button to={"signup"} style={"secondary"}>Signup</Button>
+        <Button to={"login"}>Login</Button>
+        <button className='md:hidden sm:block'>hello</button>
+        </div>
     </nav>
   )
 }
