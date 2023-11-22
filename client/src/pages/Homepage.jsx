@@ -1,16 +1,14 @@
-import Hero from '../Components/Hero'
-import Milestones from '../Components/Milestones'
-import Steps from '../Components/Steps'
-import Features from '../Components/Features'
+// import React from 'react'
+// import MIlestones from '../Components/MIlestones'
+
+import Hero from "../Components/Hero"
 
 function Homepage() {
   return (
-    <>
+    <div>
       <Hero />
-      <Milestones />
-      <Steps />
-      <Features />
-    </>
+      {/* <MIlestones/> */}
+    </div>
   )
 }
 
