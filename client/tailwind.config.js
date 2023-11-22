@@ -5,8 +5,26 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: "Inter Tight"
+      },
+      colors: {
+        dark_purple: "#6F2DBD",
+        lavender: "#A663CC",
+        light_purple: "#B298DC",
+        light_blue: "#B8D0EB",
+        cyan: "#B9FAF8",
+        gray: "#334155"
+
+      }
+    },
   },
   plugins: [],
 }
 
+// 
+// 
+// 
+// 
+// 
