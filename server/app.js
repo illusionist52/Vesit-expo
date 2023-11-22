@@ -13,6 +13,7 @@ const globalErrorHandler = require("./controllers/errorController");
 
 // MANUAL FILE IMPORTS :
 const userRoutes = require("./routes/userRoutes");
+const profileRoutes = require('./routes/profileRoutes');
 
 // INSTANCE OF EXPRESS :
 const app = express();
@@ -65,6 +66,7 @@ app.use(
 
 // ROUTE HANDLERS ==> MOUNTING THE ROUTER :
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/users", profileRoutes);
 
 // ANY UNHANDLED ROUTE :
 app.all("*", (req, res, next) => {

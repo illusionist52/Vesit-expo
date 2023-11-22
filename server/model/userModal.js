@@ -57,20 +57,21 @@ const userSchema = new mongoose.Schema({
   },
   portfolioWebsite: {
     type: String,
-    default: null
+    default: null,
   },
   branch: {
     type: String,
+    required: false,
   },
   collegeStartYear: {
     type: Date,
-    required: true,
+    required: false,
   },
   shortBio: {
     type: String,
     minlength: 20,
     maxlength: 220,
-    required: true,
+    required: false,
   },
   longDesc: {
     type: String,
@@ -132,7 +133,7 @@ const userSchema = new mongoose.Schema({
         maxlength: 100,
       },
     },
-  ]
+  ],
 });
 
 // Checks if the USER password and saved are password are SAME OR NOT :
@@ -169,6 +170,7 @@ userSchema.methods.createPasswordResetToken = function () {
   return resetToken;
 };
 
+// DOCUMENT MIDDLEWARES //
 userSchema.pre("save", function (next) {
   // Only run this function if password was actually modified
   if (!this.isModified("password" || this.isNew)) {
@@ -180,7 +182,7 @@ userSchema.pre("save", function (next) {
   next();
 });
 
-// DEELTE confirmPassword and HASHES the password :
+// DELETE confirmPassword and HASHES the password :
 userSchema.pre("save", async function (next) {
   // ONLY runs if password is modified :
   if (!this.isModified("password")) return next();
@@ -192,8 +194,33 @@ userSchema.pre("save", async function (next) {
   this.confirmPassword = undefined;
 });
 
+// FILTERS TO ONLY SHOW {'active': true} users in the frontEnd :
 userSchema.pre(/find$/, function (next) {
   this.find({ active: { $ne: false } });
+  next();
+});
+
+// Validate the Profile details after saving the LOGIN credentials :
+userSchema.pre("save", function (next) {
+  if (
+    this.isModified("branch") ||
+    this.isModified("collegeStartYear") ||
+    this.isModified("shortBio")
+  ) {
+    this.path("shortBio").required(
+      true,
+      "Short Bio is required for profile completion."
+    );
+    this.path("avatar").required(
+      true,
+      "Avatar is required for profile completion."
+    );
+    this.path("collegeStartYear").required(
+      true,
+      "College Start Year is required for profile completion."
+    );
+  }
+
   next();
 });
 

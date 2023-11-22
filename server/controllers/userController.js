@@ -62,7 +62,18 @@ exports.deleteMe =  catchAsync(async(req, res, next) => {
   })
 })
 
+// exports.getSingleUser = catchAsync((req, res, next) => {
+//   console.log(req.params);
+//   const user = req.user;
 
+//   res.status(200).json({
+//     status: "Success",
+//     message: "User Data receives",
+//     data:{
+//       user
+//     }
+//   });
+// });
 
 exports.createUser = catchAsync((req, res, next) => {
   res.status(500).json({
@@ -71,12 +82,7 @@ exports.createUser = catchAsync((req, res, next) => {
   });
 });
 
-exports.getUser = catchAsync((req, res, next) => {
-  res.status(500).json({
-    status: "error",
-    message: "This route is not yet defined",
-  });
-});
+
 
 exports.updateUser = catchAsync((req, res, next) => {
   res.status(500).json({

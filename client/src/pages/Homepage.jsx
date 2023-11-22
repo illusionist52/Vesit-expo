@@ -1,8 +1,16 @@
-import React from 'react'
+import Hero from '../Components/Hero'
+import Milestones from '../Components/Milestones'
+import Steps from '../Components/Steps'
+import Features from '../Components/Features'
 
 function Homepage() {
   return (
-    <div>Homepage</div>
+    <>
+      <Hero />
+      <Milestones />
+      <Steps />
+      <Features />
+    </>
   )
 }
 
