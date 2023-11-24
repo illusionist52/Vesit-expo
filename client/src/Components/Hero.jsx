@@ -2,27 +2,27 @@ import Button from './Button'
 
 function Hero() {
   return (
-    <div className="w-full h-[90vh]">
-      <div className="text-center flex flex-col justify-center h-full container mx-auto px-2 leading-loose font-black">
+    <div className="h-[90vh]">
+
+      <div className='w-[70px] h-[100px] bg-gradient-to-br from-cyan to-lavender absolute blur-2xl'></div>
+
+      <div className="text-center flex flex-col justify-center h-full container mx-auto px-2 font-black">
         {/* MAIN HEADING */}
-        <h1 className="text-3xl mb-6">
-          Chart your career path with{' '}
-          <span className="text-lavender font-sans ">
-            INSIDER SIGHTS
+        <h1 className="text-4xl mb-6 leading-11">
+        Forge Ahead with <br />{' '}
+          <span className="text-lavender font-sans">
+          PEER-POWERED
           </span>{' '}
-          and{' '}
-          <span className="text-lavender font-sans   font-bold">
-            COLLECTIVE LEARNING.
-          </span>{' '}
+          Guidance
         </h1>
 
         {/* SUB HEADING */}
-        <p className="max-w-sm mx-auto mb-4">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil ad at excepturi nemo enim, expedita dicta velit libero architecto veritatis molestias quisquam reprehenderit ut nesciunt perspiciatis repudiandae nisi repellat mollitia sequi optio.
+        <p className="max-w-sm mx-auto mb-4 text-sm">
+          Unlock senior student narratives, diverse company rosters, and a dynamic forum empowering you for confident placements and limitless career opportunities!
         </p>
 
         {/* CALL TO ACTION */}
-        <Button className='w-2' style={'primary'}>GET STARTED</Button>
+        <Button>GET STARTED</Button>
       </div>
     </div>
 

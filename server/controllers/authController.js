@@ -210,7 +210,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   // STEPS //
   // 1) Get current logged-in user from collection :
   const user = await User.findById(req.user._id).select('+password');
-  console.log(user);
+  // console.log(user);
 
   // 2) Check if the password is correct :
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
@@ -219,7 +219,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
   // 3) Update the password :
   (user.password = req.body.password),
-    (user.confirmPassword = req.body.confirmPassword),
+  (user.confirmPassword = req.body.confirmPassword),
     await user.save();
 
   // 4) Send JSON Web token :

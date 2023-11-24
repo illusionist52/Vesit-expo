@@ -60,7 +60,7 @@ const userSchema = new mongoose.Schema({
     default: null,
   },
   branch: {
-    type: String,
+    type: Number,
     required: false,
   },
   collegeStartYear: {
@@ -163,7 +163,7 @@ userSchema.methods.createPasswordResetToken = function () {
     .update(resetToken)
     .digest("hex");
 
-  console.log({ resetToken }, this.passwordResetToken);
+  // console.log({ resetToken }, this.passwordResetToken);
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
 
@@ -201,28 +201,27 @@ userSchema.pre(/find$/, function (next) {
 });
 
 // Validate the Profile details after saving the LOGIN credentials :
-userSchema.pre("save", function (next) {
+userSchema.pre('save', function (next) {
   if (
-    this.isModified("branch") ||
-    this.isModified("collegeStartYear") ||
-    this.isModified("shortBio")
+    this.isModified('branch') ||
+    this.isModified('collegeStartYear') ||
+    this.isModified('shortBio') ||
+    this.isModified('confirmPassword')
   ) {
-    this.path("shortBio").required(
-      true,
-      "Short Bio is required for profile completion."
-    );
-    this.path("avatar").required(
-      true,
-      "Avatar is required for profile completion."
-    );
-    this.path("collegeStartYear").required(
-      true,
-      "College Start Year is required for profile completion."
-    );
+    if (!this.shortBio) {
+      this.invalidate('shortBio', 'Short Bio is required for profile completion.');
+    }
+    if (!this.avatar) {
+      this.invalidate('avatar', 'Avatar is required for profile completion.');
+    }
+    if (!this.collegeStartYear) {
+      this.invalidate('collegeStartYear', 'College Start Year is required for profile completion.');
+    }
   }
 
   next();
 });
+
 
 const User = mongoose.model("User", userSchema);
 
