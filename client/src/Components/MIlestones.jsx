@@ -3,7 +3,7 @@ import { FaBuromobelexperte, FaTrophy, FaUser } from "react-icons/fa6";
 function MIlestones() {
   return (
     <div className="bg-slate-200 text-dark_purple">
-      <h2 className="flex justify-center py-5 text-4xl font-bold">
+      <h2 className="flex justify-center py-5 mx-7 text-4xl font-bold">
         Engagement Dashboard
       </h2>
       <div className="md:flex md:justify-around md:items-center py-6">

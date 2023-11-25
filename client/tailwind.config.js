@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: "Eudoxus-Sans",
+        sans: ["Euxodus Sans" , "sans-serif"],
       },
       colors: {
         dark_purple: "#6F2DBD",
