@@ -16,7 +16,7 @@ function Navbar() {
       <ul className="flex md:items-center md:h-5 gap-7 justify-around">
         <li>
           <NavLink
-            className="hover:bg-light_purple hover:text-slate-200 px-2 py-2 rounded-xl focus:text-dark_purple focus:underline focus:underline-offset-8 active:bg-dark_purple active:text-slate-200 visited:underline focus:decoration-dark_purple "
+            className="hover:bg-light_purple hover:text-slate-200 px-2 py-2 rounded-xl focus:text-dark_purple focus:underline focus:underline-offset-8 active:bg-dark_purple active:text-slate-200 visited:underline focus:decoration-dark_purple md:flex hidden "
             to="experiences"
           >
             Experiences
@@ -24,7 +24,7 @@ function Navbar() {
         </li>
         <li>
           <NavLink
-            className="hover:bg-light_purple hover:text-slate-200 px-2 py-2 rounded-xl focus:text-dark_purple focus:underline focus:underline-offset-8 active:bg-dark_purple active:text-slate-200 visited:underline focus:decoration-dark_purple"
+            className="hover:bg-light_purple hover:text-slate-200 px-2 py-2 rounded-xl focus:text-dark_purple focus:underline focus:underline-offset-8 active:bg-dark_purple active:text-slate-200 visited:underline focus:decoration-dark_purple md:flex hidden"
             to="forums"
           >
             Forums
@@ -32,7 +32,7 @@ function Navbar() {
         </li>
         <li>
           <NavLink
-            className="hover:bg-light_purple hover:text-slate-200 px-2 py-2 rounded-xl focus:text-dark_purple focus:underline focus:underline-offset-8 active:bg-dark_purple active:text-slate-200 visited:underline focus:decoration-dark_purple"
+            className="hover:bg-light_purple hover:text-slate-200 px-2 py-2 rounded-xl focus:text-dark_purple focus:underline focus:underline-offset-8 active:bg-dark_purple active:text-slate-200 visited:underline focus:decoration-dark_purple md:flex hidden"
             to="companies"
           >
             Companies
