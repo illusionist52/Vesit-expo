@@ -4,7 +4,7 @@ import MIlestones from '../Components/MIlestones'
 function Homepage() {
   return (
     <div>
-      {/* <MIlestones/> */}
+      <MIlestones/>
     </div>
   )
 }
