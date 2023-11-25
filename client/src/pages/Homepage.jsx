@@ -6,8 +6,7 @@ import Hero from "../Components/Hero"
 function Homepage() {
   return (
     <div>
-      <Hero />
-      {/* <MIlestones/> */}
+      <MIlestones/>
     </div>
   )
 }
