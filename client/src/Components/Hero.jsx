@@ -8,12 +8,12 @@ function Hero() {
 
       <div className="text-center flex flex-col justify-center h-full container mx-auto px-2 font-black">
         {/* MAIN HEADING */}
-        <h1 className="text-4xl mb-6 leading-11">
-        Forge Ahead with <br />{' '}
+        <h1 className="text-4xl mb-6 leading-11 md:text-[5rem] md:leading-snug">
+        Empowerment through <br />{' '}
           <span className="text-lavender font-sans">
-          PEER-POWERED
+          Collective
           </span>{' '}
-          Guidance
+          Wisdom
         </h1>
 
         {/* SUB HEADING */}
@@ -22,7 +22,9 @@ function Hero() {
         </p>
 
         {/* CALL TO ACTION */}
+        <div className=' flex justify-center  mx-auto '>
         <Button>GET STARTED</Button>
+        </div>
       </div>
     </div>
 
