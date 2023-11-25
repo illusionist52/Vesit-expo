@@ -56,33 +56,27 @@ const userSchema = new mongoose.Schema({
     default: "/images/default-avatar.png",
   },
   portfolioWebsite: {
-    type: String,
-    default: null,
+    type: String
   },
   branch: {
-    type: Number,
-    required: false,
+    type: String,
   },
   collegeStartYear: {
     type: Date,
-    required: false,
   },
   shortBio: {
     type: String,
     minlength: 20,
     maxlength: 220,
-    required: false,
   },
   longDesc: {
     type: String,
     minlength: 200,
     maxlength: 2600,
-    default: null,
   },
   skills: [
     {
       type: String,
-      default: null,
     },
   ],
   experience: [
@@ -115,7 +109,7 @@ const userSchema = new mongoose.Schema({
   achievements: [
     {
       type: String,
-      default: null,
+      // default: null,
     },
   ],
   projects: [
@@ -176,9 +170,9 @@ userSchema.pre("save", function (next) {
   if (!this.isModified("password" || this.isNew)) {
     next();
   }
-
-  this.passwordChangedAt = Date.now() - 2000;
-
+  else if(this.isModified('password')){
+    this.passwordChangedAt = Date.now() - 2000;
+  }
   next();
 });
 
@@ -199,29 +193,6 @@ userSchema.pre(/find$/, function (next) {
   this.find({ active: { $ne: false } });
   next();
 });
-
-// Validate the Profile details after saving the LOGIN credentials :
-userSchema.pre('save', function (next) {
-  if (
-    this.isModified('branch') ||
-    this.isModified('collegeStartYear') ||
-    this.isModified('shortBio') ||
-    this.isModified('confirmPassword')
-  ) {
-    if (!this.shortBio) {
-      this.invalidate('shortBio', 'Short Bio is required for profile completion.');
-    }
-    if (!this.avatar) {
-      this.invalidate('avatar', 'Avatar is required for profile completion.');
-    }
-    if (!this.collegeStartYear) {
-      this.invalidate('collegeStartYear', 'College Start Year is required for profile completion.');
-    }
-  }
-
-  next();
-});
-
 
 const User = mongoose.model("User", userSchema);
 

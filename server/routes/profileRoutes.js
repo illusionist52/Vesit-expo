@@ -6,5 +6,4 @@ const profileController = require('./../controllers/profileController');
 
 router.patch('/createProfile/:id', authController.protect, profileController.createProfile);
 
-
 module.exports = router;

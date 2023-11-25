@@ -60,7 +60,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   }
 
   // 3) If above both checks are passed, then start the process of creating new user :
-  const newUser = await User.create({
+  const user = await User.create({
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
@@ -71,7 +71,7 @@ exports.signup = catchAsync(async (req, res, next) => {
 
   //4) Creating JWT token for the authorized user :
   //5) Saving the imformation in the database :
-  createSendToken(newUser, 201, res);
+  createSendToken(user, 201, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -116,6 +116,9 @@ exports.protect = catchAsync(async (req, res, next) => {
   if (!currentUser) {
     return next(new AppError('User does not exist', 401));
   }
+
+  console.log( 'decoded : ' ,decoded)
+  console.log( 'decoded.iat : ' ,decoded.iat)
 
   //4) If user changes password after JWT_TOKEN.
   if (currentUser.changePasswordAfter(decoded.iat)) {
