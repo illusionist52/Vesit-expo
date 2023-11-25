@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: "Inter Tight"
+        sans: "Eudoxus-Sans",
       },
       colors: {
         dark_purple: "#6F2DBD",
@@ -25,9 +25,3 @@ export default {
   },
   plugins: [],
 }
-
-// 
-// 
-// 
-// 
-// 

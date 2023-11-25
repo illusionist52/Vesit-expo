@@ -56,32 +56,27 @@ const userSchema = new mongoose.Schema({
     default: "/images/default-avatar.png",
   },
   portfolioWebsite: {
-    type: String,
-    default: null
+    type: String
   },
   branch: {
     type: String,
   },
   collegeStartYear: {
     type: Date,
-    required: true,
   },
   shortBio: {
     type: String,
     minlength: 20,
     maxlength: 220,
-    required: true,
   },
   longDesc: {
     type: String,
     minlength: 200,
     maxlength: 2600,
-    default: null,
   },
   skills: [
     {
       type: String,
-      default: null,
     },
   ],
   experience: [
@@ -114,7 +109,7 @@ const userSchema = new mongoose.Schema({
   achievements: [
     {
       type: String,
-      default: null,
+      // default: null,
     },
   ],
   projects: [
@@ -132,7 +127,7 @@ const userSchema = new mongoose.Schema({
         maxlength: 100,
       },
     },
-  ]
+  ],
 });
 
 // Checks if the USER password and saved are password are SAME OR NOT :
@@ -162,25 +157,26 @@ userSchema.methods.createPasswordResetToken = function () {
     .update(resetToken)
     .digest("hex");
 
-  console.log({ resetToken }, this.passwordResetToken);
+  // console.log({ resetToken }, this.passwordResetToken);
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
 
   return resetToken;
 };
 
+// DOCUMENT MIDDLEWARES //
 userSchema.pre("save", function (next) {
   // Only run this function if password was actually modified
   if (!this.isModified("password" || this.isNew)) {
     next();
   }
-
-  this.passwordChangedAt = Date.now() - 2000;
-
+  else if(this.isModified('password')){
+    this.passwordChangedAt = Date.now() - 2000;
+  }
   next();
 });
 
-// DEELTE confirmPassword and HASHES the password :
+// DELETE confirmPassword and HASHES the password :
 userSchema.pre("save", async function (next) {
   // ONLY runs if password is modified :
   if (!this.isModified("password")) return next();
@@ -192,6 +188,7 @@ userSchema.pre("save", async function (next) {
   this.confirmPassword = undefined;
 });
 
+// FILTERS TO ONLY SHOW {'active': true} users in the frontEnd :
 userSchema.pre(/find$/, function (next) {
   this.find({ active: { $ne: false } });
   next();
