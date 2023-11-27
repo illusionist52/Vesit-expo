@@ -100,15 +100,13 @@ export function login(data) {
   }
 
 
-
-
-
-
 const store = configureStore({
   reducer: {
     user: userSlice.reducer
   },
 })
+
+export const selectUser = (state) => state.user
 
 export default store;
 
