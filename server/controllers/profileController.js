@@ -3,6 +3,14 @@ const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
 const User = require("./../model/userModal");
 
+const filterObj = (obj, ...allowedFields) => {
+  const newObj = {};
+  Object.keys(obj).forEach((el) => {
+    if (allowedFields.includes(el)) newObj[el] = obj[el];
+  });
+  return newObj;
+};
+
 exports.createProfile = async (req, res, next) => {
   try {
     // STEPS //
@@ -51,3 +59,29 @@ exports.createProfile = async (req, res, next) => {
   }
 };
 
+exports.updateProfile = catchAsync(async (req, res, next) => {
+  // 1) Don't allow for password updates :
+  // if (req.body.name || req.body.confirmPassword)
+  //   return next(
+  //     new AppError("This route is not defined for password updates", 400)
+  //   );
+
+  // 2) Update required Data :
+  const filteredFields = filterObj(req.body, "avatar", "portfolio", "branch", "collegeStartYear", "shortBio", "longDesc", "skills", "experience", "achievements", "projects");
+
+  const updateProfile = await User.findByIdAndUpdate(
+    req.user._id,
+    filteredFields,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      updateProfile,
+    },
+  });
+});

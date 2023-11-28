@@ -1,3 +1,100 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* .form__input {
+  position: absolute;
+  border: 1px solid cyan;
+  border-radius: 10px;
+  padding: 10px 20px;
+  top: 0.81rem;
+  outline: none;
+  background: none;
+  transition: all 160ms ease-in-out;
+}
+
+.form__input:focus {
+  border-color: cyan;
+}
+
+.form__label {
+  position: absolute;
+  left: 0.8rem;
+  padding-left: 6px;
+  top: 1.4rem;
+  display: block;
+  cursor: text;
+}
+
+.form__input:not(:placeholder-shown) ~ .form__label,
+.form__input:focus ~ .form__label {
+  display: block;
+  background: #334155;
+  color: cyan;
+  top: -0.1rem;
+  left: 0.6rem;
+  scale: 0.75;
+  transition: all 300ms ease-in-out;
+  padding: 2px 5px;
+  border-radius: 1rem;
+} */
+
+:root {
+  --cyan: #B9FAF8;
+  --dark_purple: #6F2DBD;
+}
+
+.input-wrapper {
+  position: relative;
+  /* max-width: 600px; */
+}
+
+.input {  
+  font-size: 20px;
+  padding: 8px 10px;
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
+  border-radius: 10px;
+  transition: border-color 250ms;
+  background-color: transparent;
+  outline: #334155;
+
+  &::focus {
+    outline: none;
+    border-color: var(--cyan);
+  }
+
+  &::placeholder {
+    color: transparent;
+  }
+  
+  &::-webkit-contacts-auto-fill-button {
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+  }
+}
+
+.label {
+  font-size: 20px;
+  background-color: transparent;
+  padding: 0 5px;
+  position: absolute;
+  top: 9px;
+  left: 6px;
+  color: var(--cyan);
+  pointer-events: none;
+  transform-origin: left center;
+  transition: transform 300ms;
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+  transform: translateY(-80%) scale(0.75);
+  border-color: var(--cyan);
+  background-color: #334155;
+}
+
+
+
+
