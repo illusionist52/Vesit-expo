@@ -12,7 +12,6 @@ export default async function createUser(data){
     }})
     console.log(res.status)
     console.log(res)
-    console.log("bhakchodi mat kar")
     toast.success("user created successfully")
  
   const dbdata = res.json()
