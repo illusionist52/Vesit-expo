@@ -2,6 +2,7 @@ import { applyMiddleware, createSlice, createStore , configureStore} from "@redu
 import toast from "react-hot-toast";
 import thunk from "redux-thunk";
 const initialState = {
+  id: "",
   name: "",
   email: "",
   password: "",
@@ -13,12 +14,14 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     login(state, action){
+      state.id= action.payload.id;
       state.name= action.payload.name;
       state.email= action.payload.email;
       state.password= action.payload.password;
       state.token= action.payload.token;
     },
     signup(state, action){
+      state.id= action.payload.id;
       state.name= action.payload.name;
       state.email= action.payload.email;
       state.password= action.payload.password;
@@ -35,7 +38,7 @@ export const {logout} = userSlice.actions;
 export function login(data) {
     // return { type: "login", payload: data };
     return async function (dispatch, getState){
-      let name, email, password, token = ""
+      let name, email, password, token, id = ""
       const res = await fetch(`http://localhost:3002/api/v1/users/login`,{
         method: "POST",
         body: JSON.stringify(data),
@@ -49,6 +52,7 @@ export function login(data) {
       if(login_data_recieved.token){
         toast.success("Logged in successfully")
         const userData = login_data_recieved.data.user
+        id= userData._id;
         name= userData.name;
         email = userData.email;
         password = userData.password;
@@ -57,10 +61,11 @@ export function login(data) {
         else{
           toast.error(login_data_recieved.message)
         }
-        data = {...data,name, token}
+        data = {...data,name, token, id}
         console.log(login_data_recieved);
         dispatch({type: "user/login", payload: data });
         console.log(store.getState());
+        return login_data_recieved
     }
   }
   
@@ -71,7 +76,7 @@ export function login(data) {
     return async function (dispatch, getState) {
       
       try {
-        let token = ""
+        let token, id = ""
         const res = await fetch(`http://localhost:3002/api/v1/users/signup`, {
           method: "POST",
           body: JSON.stringify(data),
@@ -83,15 +88,17 @@ export function login(data) {
         const data1 = await res.json();
         if(data1.token){
         toast.success("Acount created successfully")
+        id = data1.data.user._id
         token=data1.token
         }
         else{
           toast.error(data1.message)
         }
-        data= {...data, token}
+        data= {...data,id, token}
         console.log(data1)
         dispatch({ type: "user/signup", payload: data });
         console.log(store.getState());
+        return data1;
         
       } catch {
         throw new Error("something went wrong");

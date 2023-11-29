@@ -9,6 +9,15 @@ function Login() {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  async function onSubmit(data) {
+    const data_recieved = await dispatch(login(data));
+    console.log(data_recieved);
+    if (data_recieved.message === "success") {
+      navigate("/");
+    }
+  }
+
   return (
     <div className="h-screen flex items-center justify-center md:flex-row-reverse md:justify-center md:gap-x-8">
       <img

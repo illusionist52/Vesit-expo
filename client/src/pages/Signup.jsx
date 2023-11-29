@@ -4,11 +4,22 @@ import { signup } from "../Users/userSlice";
 import { useDispatch } from "react-redux";
 // import createUser from "../services/apiUsers";
 import { Link } from "react-router-dom";
-// import Button from "../Components/Button";
+import Button from "../Components/Button";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
+
+  async function onSubmit(data){
+    const data_recieved = await dispatch(signup(data));
+    console.log(data_recieved)
+    if(data_recieved.message === "success"){
+      navigate("/details")
+    }
+  }
+
   return (
     <div className="h-screen flex items-center justify-center md:flex-row-reverse md:justify-center md:gap-x-8">
       <img
@@ -22,9 +33,7 @@ function Signup() {
         </h2>
         <form
           className="flex flex-col z-20 gap-8"
-          onSubmit={handleSubmit((data) => {
-            dispatch(signup(data));
-          })}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <div className="input-wrapper">
             <input
@@ -33,7 +42,7 @@ function Signup() {
               className="input md:w-96"
               autoComplete="off"
               placeholder="Name"
-              {...register("email")}
+              {...register("name")}
             />
             <label htmlFor="name" className="label">
               Name
@@ -63,7 +72,7 @@ function Signup() {
               className="input md:w-96"
               autoComplete="off"
               placeholder="Password"
-              {...register("email")}
+              {...register("password")}
             />
             <label htmlFor="password" className="label">
               Password
@@ -77,7 +86,7 @@ function Signup() {
               className="input md:w-96"
               autoComplete="off"
               placeholder="Confirm Password"
-              {...register("email")}
+              {...register("confirmPassword")}
             />
             <label htmlFor="confirmPassword" className="label">
               Confirm Password

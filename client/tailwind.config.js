@@ -13,6 +13,7 @@ export default {
         dark_purple: "#6F2DBD",
         lavender: "#A663CC",
         light_purple: "#B298DC",
+        blue: "#95BFEF",
         light_blue: "#B8D0EB",
         cyan: "#B9FAF8",
         gray: "#334155"
