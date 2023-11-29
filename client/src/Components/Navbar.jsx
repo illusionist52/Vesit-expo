@@ -9,7 +9,7 @@ function Navbar() {
   }
 
   return (
-    <nav className=" sm:text-xs sm:w-screen p-8 md:mx-auto md:rounded-3xl md:my-5 flex justify-between items-center h-20 md:text-2xl max-w-[70rem] text-lavender font-bold bg-slate-200">
+    <nav className="sm:text-xs sm:w-screen p-8 md:mx-auto md:rounded-3xl md:my-5 flex justify-between items-center h-20 md:text-2xl max-w-[70rem] text-lavender font-bold bg-slate-200">
       <NavLink to="/">
         {" "}
         <img className="w-[80px]" src="./../../img-1.jpg" />
@@ -41,6 +41,7 @@ function Navbar() {
         </li>
       </ul>
       <div className="flex gap-2">
+        <Button to={"signup"} style={"tertiary"}>
         <Button onClick={()=>{navigate("signup")}} style={"tertiary"}>
           Signup
         </Button>

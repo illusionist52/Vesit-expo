@@ -17,7 +17,7 @@ function Hero() {
         </h1>
 
         {/* SUB HEADING */}
-        <p className="max-w-sm mx-auto mb-4 text-sm">
+        <p className="mx-auto mb-4 text-sm md:max-w-2xl">
           Unlock senior student narratives, diverse company rosters, and a dynamic forum empowering you for confident placements and limitless career opportunities!
         </p>
 
