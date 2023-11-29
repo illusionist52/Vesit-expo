@@ -11,6 +11,11 @@ function Login() {
   const navigate = useNavigate();
   return (
     <div className="h-screen flex items-center justify-center md:flex-row-reverse md:justify-center md:gap-x-8">
+      <img
+        className="absolute top-0 left-0"
+        src="./../src/assets/TORCH.png"
+        alt="TORCH"
+      />
       <div className="hidden absolute bottom-0 -left-4 -z-30 h-[300px] md:z-30 md:relative md:mb-[100px]">
         {/* <img src="../../src/assets/Login.png" alt="SINGUP" className="w-full" /> */}
         <img
