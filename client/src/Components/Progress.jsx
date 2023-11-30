@@ -19,13 +19,16 @@ function Progress({
   function onSubmit(data) {
     setProject(false);
     setList(true);
-    const newProjects = [...projectList, {projectTitle,projectDescription,techStackUsed}]
+    const newProjects = [
+      ...projectList,
+      { projectTitle, projectDescription, techStackUsed },
+    ];
     setProjectList(newProjects);
   }
 
   return (
-    <div className="flex-col justify-around items-center gap-3">
-      <label className="text-cyan mx-6 my-6 text-lg ">Project Details</label>
+    <div className="flex flex-col justify-around items-start gap-y-4">
+      <label className="text-cyan mx-6 text-lg">Project Details</label>
       <div className="input-wrapper mx-6">
         <input
           placeholder="Project title"
@@ -36,7 +39,6 @@ function Progress({
         />
         <label className="label"> Project title </label>
       </div>
-      <br />
       <div className="input-wrapper mx-6">
         <input
           className="input"
@@ -47,7 +49,6 @@ function Progress({
         />
         <label className="label"> Project Description </label>
       </div>
-      <br />
       <div className="input-wrapper mx-6">
         <input
           className="input"
@@ -58,11 +59,10 @@ function Progress({
         />
         <label className="label"> Tech stack used </label>
       </div>
-      <br />
-      <div className="mx-6">
-      <Button type={"submit"} onClick={onSubmit} style={"tertiary"}>
-        Save
-      </Button>
+      <div className="mx-6 mb-10">
+        <Button type={"submit"} onClick={onSubmit} style={"tertiary"}>
+          Save
+        </Button>
       </div>
     </div>
   );
