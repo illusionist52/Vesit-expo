@@ -152,7 +152,6 @@ function ProfileDetails() {
             </Button>
           )}
         </div>
-        <br />
         <div className="mx-6 md:flex gap-2">
           {list &&
             projectList.map((project) => <ProjectTile project={project} />)}
