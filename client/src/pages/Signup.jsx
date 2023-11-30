@@ -4,7 +4,6 @@ import { signup } from "../Users/userSlice";
 import { useDispatch } from "react-redux";
 // import createUser from "../services/apiUsers";
 import { Link } from "react-router-dom";
-import Button from "../Components/Button";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {

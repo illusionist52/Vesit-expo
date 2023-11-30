@@ -39,10 +39,7 @@ function Login() {
         </h2>
         <form
           className="flex flex-col z-20 gap-8"
-          onSubmit={handleSubmit((data) => {
-            dispatch(login(data));
-            navigate("/");
-          })}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <div style={{ position: "relative" }} className="input-wrapper">
             <input
