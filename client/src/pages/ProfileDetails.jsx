@@ -24,22 +24,22 @@ function ProfileDetails() {
   const [projectList, setProjectList] = useState([]);
   const user = useSelector(selectUser);
   const [availableSkills, setAvailableSkills] = useState([
-    'JavaScript',
-    'React',
-    'Node.js',
-    'HTML',
-    'CSS',
-    'Python',
-    'Java',
-    'SQL',
-    'Redux',
+    "JavaScript",
+    "React",
+    "Node.js",
+    "HTML",
+    "CSS",
+    "Python",
+    "Java",
+    "SQL",
+    "Redux",
     "Django",
     "Angular",
     "Web development",
     "App development",
     "Laravel",
     "Spring boot",
-    "GoLang"
+    "GoLang",
   ]);
   const [selectedSkills, setSelectedSkills] = useState([]);
   useEffect(
@@ -50,23 +50,22 @@ function ProfileDetails() {
   );
 
   function onAddP(e) {
-
     setProject(true);
   }
 
-  function addSkill(skill){
-  
-    if(!selectedSkills.includes(skill)){
-      setSelectedSkills([...selectedSkills,skill])
+  function addSkill(skill) {
+    if (!selectedSkills.includes(skill)) {
+      setSelectedSkills([...selectedSkills, skill]);
     }
   }
-  function removeSkill(skill){
-    const updatedSkills = selectedSkills.filter((selectedSkill) => selectedSkill !== skill);
+  function removeSkill(skill) {
+    const updatedSkills = selectedSkills.filter(
+      (selectedSkill) => selectedSkill !== skill,
+    );
     setSelectedSkills(updatedSkills);
-  };
+  }
 
   async function onSubmit(data) {
-  
     data = {
       ...data,
       experience: [],
@@ -146,7 +145,7 @@ function ProfileDetails() {
         </div>
         <br />
         <div className="flex mx-6 items-center gap-4">
-          <label className="text-cyan text-lg">Projects</label>
+          <p className="text-cyan text-lg">Projects</p>
           {!project && (
             <Button type={"button"} onClick={onAddP} style={"tertiary"}>
               + Add
@@ -175,16 +174,25 @@ function ProfileDetails() {
         )}
 
         <label className="text-cyan text-lg mx-6 my-3 ">Skills</label>
-        {selectedSkills.map((skill,index)=><Skill style={"Sefs"} onClick={()=>removeSkill(skill)} key={index}>{skill}</Skill>)}
-        <br/>
+        {selectedSkills.map((skill, index) => (
+          <Skill style={"Sefs"} onClick={() => removeSkill(skill)} key={index}>
+            {skill}
+          </Skill>
+        ))}
+        <br />
         <div className="mx-6">
-        {availableSkills.map((skill,index)=><Skill key={index} onClick={()=>addSkill(skill)} >{skill}</Skill>)}
+          {availableSkills.map((skill, index) => (
+            <Skill key={index} onClick={() => addSkill(skill)}>
+              {skill}
+            </Skill>
+          ))}
         </div>
-        <br/>
-        <div className="mx-6">
-        <Button style={"tertiary"} type="submit">
-          Submit
-        </Button>
+        <br />
+        <div className="text-center">
+          <Button style={"tertiary"} type="submit">
+            Submit
+          </Button>
+          <p>SUBMIT button ko thoda bada karna padega, bht chota dikh raha hai</p>
         </div>
       </form>
     </div>

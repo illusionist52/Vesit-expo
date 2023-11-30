@@ -41,7 +41,6 @@ function Navbar() {
         </li>
       </ul>
       <div className="flex gap-2">
-        <Button to={"signup"} style={"tertiary"}>
         <Button onClick={()=>{navigate("signup")}} style={"tertiary"}>
           Signup
         </Button>

@@ -22,7 +22,7 @@ function Signup() {
   return (
     <div className="h-screen flex items-center justify-center md:flex-row-reverse md:justify-center md:gap-x-8">
       <img
-        className="absolute top-0 left-0 h-[250px] md:h-96 md:left-10 md:-top-10 md:-rotate-12"
+        className="absolute top-0 left-0 h-[250px] md:h-96 md:left-10 md:-top-10 md:-rotate-12 md:hidden"
         src="./../src/assets/TORCH.png"
         alt="TORCH"
       />
