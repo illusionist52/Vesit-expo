@@ -8,14 +8,40 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../Users/userSlice";
 import store from "../Users/userSlice";
 import createProfie from "../services/apiProfile";
-import "../../src/index.css"
+import "../../src/index.css";
 import Button from "../Components/Button";
+import ProjectTile from "../Components/ProjectTile";
+import Skill from "../Components/Skill";
 
 function ProfileDetails() {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
-  const [project , setProject] = useState(false);
+  const [project, setProject] = useState(false);
+  const [list, setList] = useState(false);
+  const [projectTitle, setProjectTitle] = useState("");
+  const [projectDescription, setProjectDescription] = useState("");
+  const [techStackUsed, setTechStackUsed] = useState("");
+  const [projectList, setProjectList] = useState([]);
   const user = useSelector(selectUser);
+  const [availableSkills, setAvailableSkills] = useState([
+    'JavaScript',
+    'React',
+    'Node.js',
+    'HTML',
+    'CSS',
+    'Python',
+    'Java',
+    'SQL',
+    'Redux',
+    "Django",
+    "Angular",
+    "Web development",
+    "App development",
+    "Laravel",
+    "Spring boot",
+    "GoLang"
+  ]);
+  const [selectedSkills, setSelectedSkills] = useState([]);
   useEffect(
     function () {
       console.log(user);
@@ -23,12 +49,24 @@ function ProfileDetails() {
     [user],
   );
 
-  function onAddP(){
-   
-    setProject(true)
+  function onAddP(e) {
+
+    setProject(true);
   }
 
+  function addSkill(skill){
+  
+    if(!selectedSkills.includes(skill)){
+      setSelectedSkills([...selectedSkills,skill])
+    }
+  }
+  function removeSkill(skill){
+    const updatedSkills = selectedSkills.filter((selectedSkill) => selectedSkill !== skill);
+    setSelectedSkills(updatedSkills);
+  };
+
   async function onSubmit(data) {
+  
     data = {
       ...data,
       experience: [],
@@ -40,83 +78,115 @@ function ProfileDetails() {
     console.log(data);
   }
   return (
-    <div className="flex justify-center items-center my-20">
+    <div className="flex  justify-center  my-20">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="md:flex gap-4" >
-        <div className="input-wrapper">
-        <input
-          className="input"
-          placeholder="Portfolio Website"
-          type="text"
-          name="portfolio"
-          id="portfolioWebsite"
-          {...register("portfolio")}
-        />
-        <label htmlFor="portfolioWebsite" className="label">Portfolio Website</label>
-        </div>
-        <br />
-        <div className="input-wrapper">       
-        <input  
-          className="input"
-          placeholder="college start year"
-          type="date"
-          name="year"
-          {...register("year")}
-        />
-        <label className="label">College start year</label>
-        </div>
+        <div className="md:flex gap-4">
+          <div className="input-wrapper mx-6">
+            <input
+              className="input"
+              placeholder="Portfolio Website"
+              type="text"
+              name="portfolio"
+              id="portfolioWebsite"
+              {...register("portfolio")}
+            />
+            <label htmlFor="portfolioWebsite" className="label">
+              Portfolio Website
+            </label>
+          </div>
+          <br />
+          <div className="input-wrapper mx-6">
+            <input
+              className="input"
+              placeholder="college start year"
+              type="date"
+              name="year"
+              {...register("year")}
+            />
+            <label className="label">College start year</label>
+          </div>
         </div>
         <br />
         <div className="md:flex gap-4">
-        <div className="input-wrapper">
-        <input
-          className="input"
-          placeholder="Branch"
-          type="text"
-          name="branch"
-          {...register("branch")}
-        />
-        <label className="label">Branch</label>
+          <div className="input-wrapper mx-6">
+            <input
+              className="input"
+              placeholder="Branch"
+              type="text"
+              name="branch"
+              {...register("branch")}
+            />
+            <label className="label">Branch</label>
+          </div>
+          <br />
+          <div className="input-wrapper mx-6">
+            <input
+              className="input"
+              placeholder="Bio"
+              type="text"
+              name="portfolio"
+              {...register("shortBio")}
+            />
+            <label className="label">Bio</label>
+          </div>
         </div>
         <br />
-        <div className="input-wrapper">
+        <div className="input-wrapper mx-6">
+          <textarea
+            className="input w-72"
+            placeholder="Long desc"
+            type="text"
+            name="year"
+            {...register("longDesciption")}
+          />
 
-        
-        <input
-          className="input"
-          placeholder="Bio"
-          type="text"
-          name="portfolio"
-          {...register("shortBio")}
-        />
-        <label className="label">Bio</label>
-        </div>
+          <label htmlFor="longDesc" className="label">
+            Long desc
+          </label>
         </div>
         <br />
-        <div className="input-wrapper">
-        <textarea
-          className="input w-96"
-          placeholder="Long desc"
-          type="text"
-          name="year"
-          {...register("longDesciption")}
-        />
-      
-        <label htmlFor="longDesc" className="label" >Long desc</label>
+        <div className="flex mx-6 items-center gap-4">
+          <label className="text-cyan text-lg">Projects</label>
+          {!project && (
+            <Button type={"button"} onClick={onAddP} style={"tertiary"}>
+              + Add
+            </Button>
+          )}
         </div>
         <br />
-        <div className="md:flex items-center gap-4">
-        <label className="text-cyan text-lg">Projects</label>
-        { !project && <Button onClick={onAddP} style={"tertiary"}>+ Add</Button>}
-        
+        <div className="mx-6 md:flex gap-2">
+          {list &&
+            projectList.map((project) => <ProjectTile project={project} />)}
+        </div>
+        <br />
+        {project && (
+          <Progress
+            projectList={projectList}
+            setProject={setProject}
+            projectTitle={projectTitle}
+            setProjectTitle={setProjectTitle}
+            projectDescription={projectDescription}
+            setProjectDescription={setProjectDescription}
+            techStackUsed={techStackUsed}
+            setTechStackUsed={setTechStackUsed}
+            setList={setList}
+            setProjectList={setProjectList}
+          />
+        )}
+
+        <label className="text-cyan text-lg mx-6 my-3 ">Skills</label>
+        {selectedSkills.map((skill,index)=><Skill style={"Sefs"} onClick={()=>removeSkill(skill)} key={index}>{skill}</Skill>)}
+        <br/>
+        <div className="mx-6">
+        {availableSkills.map((skill,index)=><Skill key={index} onClick={()=>addSkill(skill)} >{skill}</Skill>)}
         </div>
         <br/>
-        {project && <Progress register={register}/>}
-       
-        <br></br>
-        <Button style={"tertiary"} type="submit">Submit</Button>
+        <div className="mx-6">
+        <Button style={"tertiary"} type="submit">
+          Submit
+        </Button>
+        </div>
       </form>
-      
     </div>
   );
 }
