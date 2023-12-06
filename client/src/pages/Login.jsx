@@ -61,7 +61,7 @@ function Login() {
               className="input"
               autoComplete="off"
               placeholder="Password"
-              {...register("email")}
+              {...register("password")}
             />
             <label htmlFor="password" className="label">
               Password

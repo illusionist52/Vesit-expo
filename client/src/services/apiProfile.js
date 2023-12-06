@@ -14,9 +14,11 @@ export default async function createProfie(data, id, token){
     const data2 = await res.json()
     console.log(data2)
     toast.success("profile created successfully")
-  
+    
+    return data2;
   }
   catch {
     throw new Error("something went wrong")
   }
+
 }

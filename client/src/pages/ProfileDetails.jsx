@@ -69,12 +69,14 @@ function ProfileDetails() {
     data = {
       ...data,
       experience: [],
-      projects: [],
+      projects: [projectList],
       achievements: [],
-      skills: [],
+      skills: [...selectedSkills],
     };
-    createProfie(data, user.id, user.token);
-    console.log(data);
+    const apiData= await createProfie(data, user.id, user.token);
+    if(apiData.success === "success")
+    navigate("/")
+
   }
   return (
     <div className="flex  justify-center  my-20">
@@ -126,7 +128,7 @@ function ProfileDetails() {
               name="portfolio"
               {...register("shortBio")}
             />
-            <label className="label">Bio</label>
+            <label className="label">Short Bio</label>
           </div>
         </div>
         <br />

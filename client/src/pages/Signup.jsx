@@ -13,7 +13,6 @@ function Signup() {
 
   async function onSubmit(data){
     const data_recieved = await dispatch(signup(data));
-    console.log(data_recieved)
     if(data_recieved.message === "success"){
       navigate("/details")
     }

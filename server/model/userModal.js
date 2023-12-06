@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema({
   // PROFILE MODEL EMBEDDING STARTS :
   avatar: {
     type: String,
-    default: "/images/default-avatar.png",
+    default: "../../public/user.png",
   },
   portfolioWebsite: {
     type: String
@@ -66,12 +66,12 @@ const userSchema = new mongoose.Schema({
   },
   shortBio: {
     type: String,
-    minlength: 20,
+    minlength: 5,
     maxlength: 220,
   },
   longDesc: {
     type: String,
-    minlength: 200,
+    minlength: 10,
     maxlength: 2600,
   },
   skills: [

@@ -6,7 +6,8 @@ const initialState = {
   name: "",
   email: "",
   password: "",
-  token: ""
+  avatar: "",
+  token: "",
 };
 
 const userSlice = createSlice({
@@ -19,6 +20,7 @@ const userSlice = createSlice({
       state.email= action.payload.email;
       state.password= action.payload.password;
       state.token= action.payload.token;
+      state.avatar= action.payload.avatar
     },
     signup(state, action){
       state.id= action.payload.id;
@@ -26,9 +28,15 @@ const userSlice = createSlice({
       state.email= action.payload.email;
       state.password= action.payload.password;
       state.token= action.payload.token;
+      state.avatar= action.payload.avatar
     },
-    logout(state, action){
-      state= initialState
+    logout(state){
+      state.id = "";
+      state.name = "";
+      state.email = "";
+      state.password = "";
+      state.avatar = "";
+      state.token = "";
     }
   }
 })
@@ -38,7 +46,7 @@ export const {logout} = userSlice.actions;
 export function login(data) {
     // return { type: "login", payload: data };
     return async function (dispatch, getState){
-      let name, email, password, token, id = ""
+      let name, email, password, token, id,avatar = ""
       const res = await fetch(`http://localhost:3002/api/v1/users/login`,{
         method: "POST",
         body: JSON.stringify(data),
@@ -56,12 +64,13 @@ export function login(data) {
         name= userData.name;
         email = userData.email;
         password = userData.password;
-        token=login_data_recieved.token
+        token=login_data_recieved.token;
+        avatar=userData.avatar
         }
         else{
           toast.error(login_data_recieved.message)
         }
-        data = {...data,name, token, id}
+        data = {...data,name, token, id, avatar}
         console.log(login_data_recieved);
         dispatch({type: "user/login", payload: data });
         console.log(store.getState());
@@ -76,7 +85,7 @@ export function login(data) {
     return async function (dispatch, getState) {
       
       try {
-        let token, id = ""
+        let token, id , avatar= ""
         const res = await fetch(`http://localhost:3002/api/v1/users/signup`, {
           method: "POST",
           body: JSON.stringify(data),
@@ -89,15 +98,15 @@ export function login(data) {
         if(data1.token){
         toast.success("Acount created successfully")
         id = data1.data.user._id
+        avatar = data1.data.user.avatar;
         token=data1.token
         }
         else{
           toast.error(data1.message)
         }
-        data= {...data,id, token}
+        data= {...data,id, token, avatar}
         console.log(data1)
         dispatch({ type: "user/signup", payload: data });
-        console.log(store.getState());
         return data1;
         
       } catch {
@@ -105,6 +114,8 @@ export function login(data) {
       }
     };
   }
+
+
 
 
 const store = configureStore({
