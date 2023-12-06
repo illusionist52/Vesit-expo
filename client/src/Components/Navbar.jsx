@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../Users/userSlice";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
-function Navbar() {
+import { GiHamburgerMenu } from "react-icons/gi";
+
+function Navbar({setToggleHamburger}) {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -14,7 +16,7 @@ function Navbar() {
   }
 
   return (
-    <nav className="sm:text-xs sm:w-screen p-8 md:mx-auto md:rounded-3xl md:my-5 flex justify-between items-center h-20 md:text-2xl max-w-[70rem] text-lavender font-bold bg-slate-200">
+    <nav className="text-xs w-screen p-8 justify-evenly md:mx-auto md:rounded-3xl md:my-5 flex md:justify-between items-center h-20 md:text-2xl max-w-[70rem] text-lavender font-bold bg-slate-200">
       <NavLink to="/">
         {" "}
         <img className="w-[80px]" src="./../../img-1.jpg" />
@@ -58,6 +60,7 @@ function Navbar() {
           <Button to={"login"}>Login</Button>
         </div>
       )}
+      
       {user.name && (
         <div className="flex gap-3 justify-center items-center">
           <img src={user.avatar} className="w-[50px]" />
@@ -78,6 +81,8 @@ function Navbar() {
           </Button>
         </div>
       )}
+      <div className="ml-4 md:hidden" onClick={()=>{setToggleHamburger((show)=>(!show))}}><GiHamburgerMenu size={25}/></div>
+      
     </nav>
   );
 }
