@@ -14,9 +14,18 @@ export const navVariants = {
     transition: {
       type: 'spring',
       stiffness: 80,
-      delay: 1,
+      delay: 0.5,
     },
   },
+  hide: {
+    opacity:0,
+    y: -50,
+    transition: {
+      type: 'spring',
+      stiffness: 300,
+      damping: 140,
+    },
+  }
 };
 
 export const slideIn = (direction, type, delay, duration) => ({

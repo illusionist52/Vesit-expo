@@ -6,8 +6,10 @@ import { logout, selectUser } from "../Users/userSlice";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { motion } from "framer-motion";
+import { navVariants } from "../styles/motion";
 
-function Navbar({setToggleHamburger}) {
+function Navbar({ setToggleHamburger }) {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,7 +18,12 @@ function Navbar({setToggleHamburger}) {
   }
 
   return (
-    <nav className="text-xs w-screen p-8 justify-evenly md:mx-auto md:rounded-3xl md:my-5 flex md:justify-between items-center h-20 md:text-2xl max-w-[70rem] text-lavender font-bold bg-slate-200">
+    <motion.nav
+      variants={navVariants}
+      initial="hidden"
+      whileInView="show"
+      className="text-xs w-screen p-8 justify-evenly md:mx-auto md:rounded-3xl md:my-5 flex md:justify-between items-center h-20 md:text-2xl max-w-[70rem] text-lavender font-bold bg-slate-200"
+    >
       <NavLink to="/">
         {" "}
         <img className="w-[80px]" src="./../../img-1.jpg" />
@@ -60,7 +67,7 @@ function Navbar({setToggleHamburger}) {
           <Button to={"login"}>Login</Button>
         </div>
       )}
-      
+
       {user.name && (
         <div className="flex gap-3 justify-center items-center">
           <h2 className="text-lavender font-bold text-xl">{user.name}</h2>
@@ -69,7 +76,7 @@ function Navbar({setToggleHamburger}) {
             style={"custom"}
             onClick={() => {
               dispatch(logout());
-              toast.success("Logged out")
+              toast.success("Logged out");
             }}
             color={"lavender"}
             hover={"dark_purple"}
@@ -81,9 +88,15 @@ function Navbar({setToggleHamburger}) {
           </Button>
         </div>
       )}
-      <div className="ml-4 md:hidden" onClick={()=>{setToggleHamburger((show)=>(!show))}}><GiHamburgerMenu size={25}/></div>
-      
-    </nav>
+      <div
+        className="ml-4 md:hidden"
+        onClick={() => {
+          setToggleHamburger((show) => !show);
+        }}
+      >
+        <GiHamburgerMenu size={25} />
+      </div>
+    </motion.nav>
   );
 }
 
