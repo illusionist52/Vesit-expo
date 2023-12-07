@@ -70,8 +70,12 @@ function Navbar({ setToggleHamburger }) {
 
       {user.name && (
         <div className="flex gap-3 justify-center items-center">
+          <NavLink to="profile">
+          <div className="flex gap-2 justify-center items-center">
           <h2 className="text-lavender font-bold text-xl">{user.name}</h2>
           <img src={user.avatar} className="w-[50px]" />
+          </div>
+          </NavLink>
           <Button
             style={"custom"}
             onClick={() => {
