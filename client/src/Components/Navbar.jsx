@@ -63,8 +63,8 @@ function Navbar({setToggleHamburger}) {
       
       {user.name && (
         <div className="flex gap-3 justify-center items-center">
-          <img src={user.avatar} className="w-[50px]" />
           <h2 className="text-lavender font-bold text-xl">{user.name}</h2>
+          <img src={user.avatar} className="w-[50px]" />
           <Button
             style={"custom"}
             onClick={() => {

@@ -58,8 +58,11 @@ function HamNav({ toggleHamburger, setToggleHamburger }) {
           <li className=" ">
           <Button
               style={"custom"}
-              className={"border-none text-xl font-bold py-4 px-[100vh]"}
-              active={"lavender"}
+              className={"border-none text-xl font-bold py-2 px-4"}
+              active={"light_purple"}
+              hover={"dark_purple"}
+              color={"lavender"}
+              text={"slate-200"}
               onClick={() => {
                 dispatch(logout());
                 setToggleHamburger(false)
