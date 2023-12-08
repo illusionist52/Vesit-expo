@@ -56,12 +56,12 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
         </li>
       </ul>
       {!user.name && (
-        <div className="flex gap-2 -mr-[23px]">
+        <div className="flex gap-2 -mr-[23px] md:mr-0">
           <Button
             onClick={() => {
               navigate("signup");
             }}
-            style={"tertiary"}
+            style={"secondary"}
           >
             Signup
           </Button>

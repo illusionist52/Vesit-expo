@@ -10,13 +10,14 @@ export default {
         sans: ["Euxodus Sans" , "sans-serif"],
       },
       colors: {
-        dark_purple: "#6F2DBD",
-        lavender: "#A663CC",
-        light_purple: "#B298DC",
-        blue: "#95BFEF",
-        light_blue: "#B8D0EB",
+        dark_purple: "#6F2DBD",  // Lagega !!
+        lavender: "#CE68FE",     // Form Color + Buttons
+        light_purple: "#B298DC", // Optional
+        blue: "#95BFEF",         // Optional
+        light_blue: "#B8D0EB",   // Optional
         cyan: "#B9FAF8",
-        gray: "#334155"
+        gray: "#1C233D",   // Main background color.
+        light_gray: "#202B47"   // Will be useful for cards
 
       }
       ,transitionTimingFunction: {
