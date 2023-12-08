@@ -34,7 +34,7 @@ function Login() {
         />
       </div>
       <div className="bg-brown-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100 p-8 mb-20 md:mb-0">
-        <h2 className="text-5xl text-center font-semibold mb-4 md:text-cyan">
+        <h2 className="text-5xl text-center font-semibold mb-4 md:text-light_purple">
           LOGIN
         </h2>
         <form
@@ -69,7 +69,7 @@ function Login() {
           </div>
           <div className="mx-auto text-lg">
             <button
-              className="px-5 py-2 rounded-xl border-2 border-[10px_10p_10px_10px_cyan] bg-light_blue text-gray font-semibold hover:shadow-lg transition ease-in-out delay-[200] hover:shadow-cyan"
+              className="px-5 py-2 rounded-xl border-2 border-[10px_10p_10px_10px_light_purple] bg-light_blue text-gray font-semibold hover:shadow-lg transition ease-in-out delay-[200] hover:shadow-light_purple"
               type="submit"
             >
               Login
@@ -77,7 +77,7 @@ function Login() {
           </div>
           <span className="-mt-7 mx-auto text-lg text-slate-100">
             Don't have an Account?{" "}
-            <Link className="text-cyan underline" to={"/signup"}>
+            <Link className="text-light_purple underline" to={"/signup"}>
               Sign Up
             </Link>
           </span>
