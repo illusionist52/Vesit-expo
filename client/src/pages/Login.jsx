@@ -21,7 +21,7 @@ function Login() {
   return (
     <div className="h-screen flex items-center justify-center md:flex-row-reverse md:justify-center md:gap-x-8">
       <img
-        className="absolute top-0 left-0 md:hidden"
+        className="absolute top-0 left-0 h-[350px] md:hidden"
         src="./../src/assets/TORCH.png"
         alt="TORCH"
       />
