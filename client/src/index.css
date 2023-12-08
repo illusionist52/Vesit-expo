@@ -40,8 +40,8 @@
 } */
 
 :root {
-  --cyan: #B9FAF8;
   --dark_purple: #6F2DBD;
+  --cyan: "#B298DC"
 }
 
 .input-wrapper {
@@ -52,8 +52,8 @@
 .input {  
   font-size: 20px;
   padding: 8px 10px;
-  color: var(--cyan);
-  border: 1px solid var(--cyan);
+  color: #B298DC;
+  border: 1px solid #B298DC;
   border-radius: 10px;
   transition: border-color 250ms;
   background-color: transparent;
@@ -61,7 +61,7 @@
 
   &::focus {
     outline: none;
-    border-color: var(--cyan);
+    border-color: #B298DC;
   }
 
   &::placeholder {
@@ -82,7 +82,7 @@
   position: absolute;
   top: 9px;
   left: 6px;
-  color: var(--cyan);
+  color: #B298DC;
   pointer-events: none;
   transform-origin: left center;
   transition: transform 300ms;
@@ -91,7 +91,7 @@
 .input:focus + .label,
 .input:not(:placeholder-shown) + .label {
   transform: translateY(-80%) scale(0.75);
-  border-color: var(--cyan);
+  border-color: #B298DC;
   background-color: #334155;
 }
 
