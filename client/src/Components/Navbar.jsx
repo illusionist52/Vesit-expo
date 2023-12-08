@@ -8,8 +8,9 @@ import toast from "react-hot-toast";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { motion } from "framer-motion";
 import { navVariants } from "../styles/motion";
+import { ImCross } from "react-icons/im";
 
-function Navbar({ setToggleHamburger }) {
+function Navbar({ setToggleHamburger, toggleHamburger }) {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ function Navbar({ setToggleHamburger }) {
         </li>
       </ul>
       {!user.name && (
-        <div className="flex gap-2">
+        <div className="flex gap-2 -mr-[23px]">
           <Button
             onClick={() => {
               navigate("signup");
@@ -71,10 +72,10 @@ function Navbar({ setToggleHamburger }) {
       {user.name && (
         <div className="flex gap-3 justify-center items-center">
           <NavLink to="profile">
-          <div className="flex gap-2 justify-center items-center">
-          <h2 className="text-lavender font-bold text-xl">{user.name}</h2>
-          <img src={user.avatar} className="w-[50px]" />
-          </div>
+            <div className="flex gap-2 justify-center items-center">
+              <h2 className="text-lavender font-bold text-xl">{user.name}</h2>
+              <img src={user.avatar} className="w-[50px]" />
+            </div>
           </NavLink>
           <Button
             style={"custom"}
@@ -93,12 +94,21 @@ function Navbar({ setToggleHamburger }) {
         </div>
       )}
       <div
-        className="ml-4 md:hidden"
+        className="ml-[30px] md:hidden"
         onClick={() => {
           setToggleHamburger((show) => !show);
         }}
       >
-        <GiHamburgerMenu size={25} />
+        {
+          toggleHamburger ? (
+            <div className="w-[25px] flex justify-center items-center">
+              <ImCross size={20} />
+            </div>
+          ) :
+          <div className="w-[25px] flex justify-center items-center">
+            <GiHamburgerMenu size={25} />
+          </div>
+        }
       </div>
     </motion.nav>
   );

@@ -9,7 +9,7 @@ function Applayout() {
 
   return (
     <div>
-      <Navbar setToggleHamburger={setToggleHamburger}/>
+      <Navbar setToggleHamburger={setToggleHamburger} toggleHamburger={toggleHamburger}/>
       <HamNav toggleHamburger={toggleHamburger} setToggleHamburger={setToggleHamburger} />
       <Outlet/>
       <Footer/>
