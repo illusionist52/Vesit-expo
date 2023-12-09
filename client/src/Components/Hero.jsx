@@ -19,7 +19,7 @@ function Hero() {
         </p>
 
         {/* CALL TO ACTION */}
-        <div className=" flex justify-center mx-auto ">
+        <div className="">
           <Button style={"primary"}>GET STARTED</Button>
         </div>
       </div>
