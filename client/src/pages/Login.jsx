@@ -22,13 +22,13 @@ function Login() {
     <div className="h-screen flex items-center justify-center md:flex-row-reverse md:justify-center md:gap-x-8">
       <img
         className="absolute top-0 left-0 h-[350px] md:hidden"
-        src="./../src/assets/TORCH.png"
+        src="./TORCH.png"
         alt="TORCH"
       />
       <div className="hidden absolute bottom-0 -left-4 -z-30 h-[300px] md:z-30 md:relative md:mb-[100px]">
         {/* <img src="../../src/assets/Login.png" alt="SINGUP" className="w-full" /> */}
         <img
-          src="../../src/assets/Grp_Study.png"
+          src="./Grp_Study.png"
           alt="SINGUP"
           className="w-full"
         />
@@ -69,7 +69,7 @@ function Login() {
           </div>
           <div className="mx-auto text-lg">
             <button
-              className="px-5 py-2 rounded-xl border-2 border-[10px_10p_10px_10px_light_purple] bg-light_blue text-gray font-semibold hover:shadow-lg transition ease-in-out delay-[200] hover:shadow-light_purple"
+              className="px-5 py-2 rounded-xl bg-light_purple text-gray font-semibold hover:shadow-lg transition ease-in-out delay-[200] hover:shadow-lavender mb-2"
               type="submit"
             >
               Login
