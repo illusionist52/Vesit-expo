@@ -9,7 +9,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { motion } from "framer-motion";
 import { navVariants } from "../styles/motion";
 import { ImCross } from "react-icons/im";
-
+import "../index.css";
 function Navbar({ setToggleHamburger, toggleHamburger }) {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
       <ul className="flex md:items-center md:h-5 gap-7 justify-around">
         <li>
           <NavLink
-            className="hover:bg-light_purple hover:text-slate-200 px-2 py-2 rounded-xl focus:text-dark_purple focus:underline focus:underline-offset-8 active:bg-dark_purple active:text-slate-200 visited:underline focus:decoration-dark_purple md:flex hidden "
+            className="px-2 py-2 rounded-xl   focus:text-dark_purple relative before:content-[''] before:w-[100%] before:h-[3px] before:absolute before:left-0 before:bottom-0 before:invisible before:bg-dark_purple before:transition before:ease-in-out before:duration-500 before:scale-x-0 before:delay-300 hover:before:visible hover:before:scale-x-100 md:flex hidden "
             to="experiences"
           >
             Experiences
@@ -40,7 +40,7 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
         </li>
         <li>
           <NavLink
-            className="hover:bg-light_purple hover:text-slate-200 px-2 py-2 rounded-xl focus:text-dark_purple focus:underline focus:underline-offset-8 active:bg-dark_purple active:text-slate-200 visited:underline focus:decoration-dark_purple md:flex hidden"
+            className="px-2 py-2 rounded-xl   focus:text-dark_purple relative before:content-[''] before:w-[100%] before:h-[3px] before:absolute before:left-0 before:bottom-0 before:invisible before:bg-dark_purple before:transition before:ease-in-out before:duration-500 before:scale-x-0 before:delay-300 hover:before:visible hover:before:scale-x-100 md:flex hidden "
             to="forums"
           >
             Forums
@@ -48,7 +48,7 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
         </li>
         <li>
           <NavLink
-            className="hover:bg-light_purple hover:text-slate-200 px-2 py-2 rounded-xl focus:text-dark_purple focus:underline focus:underline-offset-8 active:bg-dark_purple active:text-slate-200 visited:underline focus:decoration-dark_purple md:flex hidden"
+            className="px-2 py-2 rounded-xl   focus:text-dark_purple relative before:content-[''] before:w-[100%] before:h-[3px] before:absolute before:left-0 before:bottom-0 before:invisible before:bg-dark_purple before:transition before:ease-in-out before:duration-500 before:scale-x-0 before:delay-300 hover:before:visible hover:before:scale-x-100 md:flex hidden "
             to="companies"
           >
             Companies
@@ -99,16 +99,15 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
           setToggleHamburger((show) => !show);
         }}
       >
-        {
-          toggleHamburger ? (
-            <div className="w-[25px] flex justify-center items-center">
-              <ImCross size={20} />
-            </div>
-          ) :
+        {toggleHamburger ? (
+          <div className="w-[25px] flex justify-center items-center">
+            <ImCross size={20} />
+          </div>
+        ) : (
           <div className="w-[25px] flex justify-center items-center">
             <GiHamburgerMenu size={25} />
           </div>
-        }
+        )}
       </div>
     </motion.nav>
   );
