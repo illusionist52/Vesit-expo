@@ -3,7 +3,7 @@ import "./../../src/index.css";
 
 function Hero() {
   return (
-    <div className="h-[50dvh]">
+    <div className="h-[57dvh]">
       <div className="flex flex-col justify-center h-[500px] container mx-auto p-6 font-black md:items-center">
         {/* MAIN HEADING */}
         <h1 className="text-[40px] text-left mb-6 leading-[1.2] md:text-[4.5rem] md:leading-snug md:items-center md:text-center md:-mt-14">
@@ -24,7 +24,7 @@ function Hero() {
         </div>
 
         {/* SUB HEADING */}
-        <p className="mb-8 text-left text-sm font-medium md:max-w-2xl md:text-center md:text-lg ">
+        <p className="mb-8 text-left text-sm font-medium md:max-w-2xl md:text-center md:text-xl md:leading-8">
           Unlock senior student narratives, diverse company rosters, and a
           dynamic forum empowering you for confident placements and limitless
           career opportunities!
