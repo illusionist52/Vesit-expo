@@ -193,7 +193,7 @@ function ProfileDetails() {
           />
         )}
 
-        <label className="text-lavender text-3xl mx-6 my-3 font-bold ">Skills</label>
+        <label className="text-lavender text-3xl mx-6 my-3 font-bold">Skills</label>
         {selectedSkills.map((skill, index) => (
           <Skill style={"Sefs"} onClick={() => removeSkill(skill)} key={index}>
             {skill}

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import Hero from '../Components/Hero'
-import MIlestones from '../Components/MIlestones'
+import Milestones from '../Components/Milestones'
 import store, { selectUser } from '../Users/userSlice'
 import { useEffect } from 'react';
 import './../../src/index.css'
@@ -21,7 +21,7 @@ function Homepage() {
       <div className='absolute top-[100px] w-[200px] h-[160px] -z-10 inset-0 gradient-01 md:w-[500px]'></div>
       <Hero />
       <LogoSection />
-      <MIlestones/>
+      <Milestones/>
       <Features/>
       <Steps />
     </div>
