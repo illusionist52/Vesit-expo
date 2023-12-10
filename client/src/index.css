@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* SCROLL BAR */
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #B298DC;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #CE68FE;
+}
+
 
 .glassmorphism {
   background: rgba(255, 255, 255, 0.25);
