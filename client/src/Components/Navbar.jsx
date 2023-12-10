@@ -23,7 +23,7 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
       variants={navVariants}
       initial="hidden"
       whileInView="show"
-      className="text-xs w-screen p-8 justify-evenly md:mx-auto md:rounded-3xl md:my-5 flex md:justify-between items-center h-20 md:text-2xl max-w-[70rem] text-lavender font-bold bg-slate-200"
+      className="text-xs w-screen py-8 px-2 justify-evenly md:mx-auto md:rounded-3xl md:my-5 flex md:justify-between items-center h-20 md:text-2xl max-w-[70rem] text-lavender font-bold bg-slate-200"
     >
       <NavLink to="/">
         {" "}
