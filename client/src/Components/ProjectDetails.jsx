@@ -2,7 +2,8 @@ import React from "react";
 import "../../src/index.css";
 import Button from "./Button";
 import { useForm } from "react-hook-form";
-function Progress({
+import AvatarUpload from "./AvatarUpload";
+function ProjectDetails({
   techStackUsed,
   setTechStackUsed,
   projectDescription,
@@ -27,8 +28,10 @@ function Progress({
   }
 
   return (
-    <div className="flex flex-col justify-around items-start gap-y-4">
-      <label className="text-cyan mx-6 text-lg">Project Details</label>
+    <>
+      <label className="text-lavender mx-6 my-5 text-lg">Project Details</label>
+    <div className="flex flex-col justify-around items-start gap-y-4 ">
+      
       <div className="input-wrapper mx-6">
         <input
           placeholder="Project title"
@@ -60,14 +63,24 @@ function Progress({
         <label className="label"> Tech stack used </label>
       </div>
       <div className="mx-6 mb-10">
-        <Button type={"submit"} onClick={onSubmit} style={"tertiary"}>
-          Save
-        </Button>
+        
+        <Button
+              type={"submit"}
+              onClick={onSubmit}
+              style={"custom"}
+              color="lavender"
+              text="gray"
+              className="font-bold"
+              hover="dark_purple"
+              active="light_purple"
+            >
+              Save
+            </Button>
       </div>
       
       </div>
-    
+      </>
   );
 }
 
-export default Progress;
+export default ProjectDetails;

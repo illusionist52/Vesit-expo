@@ -10,6 +10,23 @@ const initialState = {
   token: "",
 };
 
+function loadState(){
+  try {
+    const serializedState = localStorage.getItem('authState');
+    return serializedState ? JSON.parse(serializedState) : initialState;
+  } catch (err) {
+    console.error('Error loading state from local storage:', err);
+    return initialState;
+  }
+}
+function saveState(state){
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('authState', serializedState);
+  } catch (err) {
+    console.error('Error saving state to local storage:', err);
+  }
+}
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -37,6 +54,7 @@ const userSlice = createSlice({
       state.password = "";
       state.avatar = "";
       state.token = "";
+      localStorage.removeItem('authState');
     }
   }
 })
@@ -122,6 +140,11 @@ const store = configureStore({
   reducer: {
     user: userSlice.reducer
   },
+  preloadedState:loadState()
+})
+
+store.subscribe(()=>{
+  saveState(store.getState())
 })
 
 export const selectUser = (state) => state.user

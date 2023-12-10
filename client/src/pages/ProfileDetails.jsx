@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import AcademicDetails from "../Components/AcademicDetails";
 import Description from "../Components/Description";
-import Progress from "../Components/Progress";
+import Progress from "../Components/ProjectDetails";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../Users/userSlice";
@@ -12,12 +12,15 @@ import "../../src/index.css";
 import Button from "../Components/Button";
 import ProjectTile from "../Components/ProjectTile";
 import Skill from "../Components/Skill";
+import ProjectDetails from "../Components/ProjectDetails";
+import AvatarUpload from "../Components/AvatarUpload";
 
 function ProfileDetails() {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const [project, setProject] = useState(false);
   const [list, setList] = useState(false);
+  const [avatar, setAvatar] = useState(null);
   const [projectTitle, setProjectTitle] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
   const [techStackUsed, setTechStackUsed] = useState("");
@@ -68,19 +71,26 @@ function ProfileDetails() {
   async function onSubmit(data) {
     data = {
       ...data,
+      avatar:avatar,
       experience: [],
       projects: [projectList],
       achievements: [],
       skills: [...selectedSkills],
     };
-    const apiData= await createProfie(data, user.id, user.token);
-    if(apiData.success === "success")
-    navigate("/")
-
+    const apiData = await createProfie(data, user.id, user.token);
+    if (apiData.success === "success") navigate("/");
   }
   return (
-    <div className="flex  justify-center  my-20">
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="flex flex-col justify-center items-center gap-8 p-3 md:max-w-3xl md:rounded-xl md:bg-light_gray md:my-10 md:mx-auto text-lavender">
+
+      <h1 className="text-lavender text-5xl font-extrabold text-center" >Profile Details</h1>
+      <p className="text-center"> Personalize your experience by providing some details about yourself. We respect your privacy, and this information will only be visible to others if you choose to make it public.</p>
+      <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex flex-col items-center justify-center my-4">
+        <AvatarUpload setAvatar={setAvatar}/>
+      <label className="text-center">Your avatar</label>
+        
+        </div>
         <div className="md:flex gap-4">
           <div className="input-wrapper mx-6">
             <input
@@ -147,9 +157,18 @@ function ProfileDetails() {
         </div>
         <br />
         <div className="flex mx-6 items-center gap-4">
-          <p className="text-cyan text-lg">Projects</p>
+          <h1 className="text-lavender text-3xl font-bold">Projects</h1>
           {!project && (
-            <Button type={"button"} onClick={onAddP} style={"tertiary"}>
+            <Button
+              type={"button"}
+              onClick={onAddP}
+              style={"custom"}
+              color="lavender"
+              text="gray"
+              className="font-bold"
+              hover="dark_purple"
+              active="light_purple"
+            >
               + Add
             </Button>
           )}
@@ -160,7 +179,7 @@ function ProfileDetails() {
         </div>
         <br />
         {project && (
-          <Progress
+          <ProjectDetails
             projectList={projectList}
             setProject={setProject}
             projectTitle={projectTitle}
@@ -174,7 +193,7 @@ function ProfileDetails() {
           />
         )}
 
-        <label className="text-cyan text-lg mx-6 my-3 ">Skills</label>
+        <label className="text-lavender text-3xl mx-6 my-3 font-bold ">Skills</label>
         {selectedSkills.map((skill, index) => (
           <Skill style={"Sefs"} onClick={() => removeSkill(skill)} key={index}>
             {skill}
@@ -190,10 +209,10 @@ function ProfileDetails() {
         </div>
         <br />
         <div className="text-center">
-          <Button style={"tertiary"} type="submit">
+          <Button style="custom" color="lavender" text="gray" className="font-bold " type="submit">
             Submit
           </Button>
-          <p>SUBMIT button ko thoda bada karna padega, bht chota dikh raha hai</p>
+         
         </div>
       </form>
     </div>
