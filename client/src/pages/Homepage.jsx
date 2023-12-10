@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import './../../src/index.css'
 import Steps from '../Components/Steps';
 import LogoSection from '../Components/LogoSection';
+import Features from '../Components/Features';
 
 function Homepage() {
 
@@ -21,6 +22,7 @@ function Homepage() {
       <Hero />
       <LogoSection />
       <Milestones/>
+      <Features/>
       <Steps />
     </div>
   )

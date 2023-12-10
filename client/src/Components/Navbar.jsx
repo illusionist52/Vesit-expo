@@ -23,7 +23,7 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
       variants={navVariants}
       initial="hidden"
       whileInView="show"
-      className="text-xs w-screen py-8 px-2 justify-evenly md:mx-auto md:rounded-3xl md:my-5 flex md:justify-between items-center h-20 md:text-2xl max-w-[70rem] text-lavender font-bold bg-slate-200"
+      className="text-xs w-screen py-8 px-2 justify-evenly md:mx-auto md:rounded-3xl md:my-5 flex md:justify-between items-center h-20 md:text-2xl max-w-[70rem] text-lavender font-bold bg-slate-200 md:px-8"
     >
       <NavLink to="/">
         {" "}
@@ -32,7 +32,7 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
       <ul className="flex md:items-center md:h-5 gap-7 justify-around">
         <li>
           <NavLink
-            className="px-2 py-2 rounded-xl   focus:text-dark_purple relative before:content-[''] before:w-[100%] before:h-[3px] before:absolute before:left-0 before:bottom-0 before:invisible before:bg-dark_purple before:transition before:ease-in-out before:duration-500 before:scale-x-0 before:delay-300 hover:before:visible hover:before:scale-x-100 md:flex hidden "
+            className="px-2 py-2 rounded-xl   focus:text-dark_purple relative before:content-[''] before:w-[100%] before:h-[3px] before:absolute before:left-0 before:bottom-0 before:invisible before:bg-dark_purple before:transition before:ease-in-out before:duration-500 before:scale-x-0 before:delay-300 hover:before:visible hover:before:scale-x-100 hover:after:scale-x-0 md:flex hidden "
             to="experiences"
           >
             Experiences
@@ -57,10 +57,7 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
       </ul>
       {!user.name && (
         <div className="flex gap-2 -mr-[23px] md:mr-0">
-          <Button
-            onClick={() => {
-              navigate("signup");
-            }}
+          <Button to="signup"
             style={"secondary"}
           >
             Signup

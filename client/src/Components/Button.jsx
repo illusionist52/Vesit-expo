@@ -5,7 +5,7 @@ function Button({children,type,  style, to, onClick, color, text, hover, active,
   const navigate = useNavigate();
 
   if(style==="custom")
-  return <button onClick={onClick} type={type} className={`py-1 px-2 md:py-2 md:px-5 rounded-xl bg-${color} text-${text} border-2 border-inherit border-solid hover:bg-${hover} hover:text-slate-200 active:bg-${active} ${className} `}>{children}</button>
+  return <button onClick={onClick} type={type} className={`py-1 px-2 md:py-2 md:px-5 rounded-xl bg-${color} text-${text} hover:bg-${hover} hover:text-slate-200 active:bg-${active} ${className} `}>{children}</button>
 
   if(style==="tertiary")
     return <button onClick={onClick} type={type} className='py-1 px-2 md:py-2 md:px-5 rounded-xl font-bold text-gray bg-cyan border-2 border-solid'>{children}</button>
