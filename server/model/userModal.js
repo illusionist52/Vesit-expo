@@ -79,7 +79,7 @@ const userSchema = new mongoose.Schema({
       type: String,
     },
   ],
-  experience: [
+  workHistory: [
     {
       companyName: {
         type: String,
