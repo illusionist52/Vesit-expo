@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-
+import toast from "react-hot-toast";
 const initialState = {
   avatar: null,
   portfolioWebsite: "",
@@ -9,7 +9,7 @@ const initialState = {
   longDesc: "",
   projects: [],
   skills: [],
-  experience: [],
+  workHistory: [],
   achievements: []
 }
 
@@ -19,11 +19,11 @@ const profileSlice = createSlice({
   reducers:{
     createProfile(state,action){
       state.avatar=action.payload.avatar;
-      state.portfolio=action.payload.portfolioWebsite;
+      state.portfolioWebsite=action.payload.portfolioWebsite;
       state.branch=action.payload.branch;
-      state.year=action.payload.collegeStartYear;
+      state.collegeStartYear=action.payload.collegeStartYear;
       state.shortBio=action.payload.shortBio;
-      state.longDescription=action.payload.longDescription;
+      state.longDesc=action.payload.longDesc;
       state.projects=action.payload.projects;
       state.skills=action.payload.skills;
       state.achievements=action.payload.achievements;
@@ -45,6 +45,7 @@ export function createProfile(data,id,token){
       }})
       const data2 = await res.json()
       console.log(data2)
+      console.log(data)
       toast.success("profile created successfully")
       dispatch({type:"profile/createProfile" , payload:data})
       return data2;

@@ -37,7 +37,7 @@ function ProfilePage() {
       {/* PROJECTS */}
       <ul className="mx-5 mt-10">
         <h1 className="text-4xl text-slate-200 font-bold mb-2">PROJECTS</h1>
-        {profile.projects.map(()=><ProjectsTile/>)}
+        {profile.projects.map((project,index)=><ProjectsTile key={index} project={project}/>)}
       </ul>
 
       {/* SKILLS */}

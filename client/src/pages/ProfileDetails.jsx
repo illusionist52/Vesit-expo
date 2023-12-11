@@ -73,8 +73,8 @@ function ProfileDetails() {
     data = {
       ...data,
       avatar:avatar,
-      experience: [],
-      projects: [projectList],
+      workHistory: [],
+      projects: [...projectList],
       achievements: [],
       skills: [...selectedSkills],
     };
@@ -100,7 +100,7 @@ function ProfileDetails() {
               type="text"
               name="portfolio"
               id="portfolioWebsite"
-              {...register("portfolio")}
+              {...register("portfolioWebsite")}
             />
             <label htmlFor="portfolioWebsite" className="label">
               Portfolio Website
@@ -113,7 +113,7 @@ function ProfileDetails() {
               placeholder="college start year"
               type="date"
               name="year"
-              {...register("year")}
+              {...register("collegeStartYear")}
             />
             <label className="label">College start year</label>
           </div>
@@ -149,7 +149,7 @@ function ProfileDetails() {
             placeholder="Long desc"
             type="text"
             name="year"
-            {...register("longDesciption")}
+            {...register("longDesc")}
           />
 
           <label htmlFor="longDesc" className="label">
@@ -193,13 +193,14 @@ function ProfileDetails() {
             setProjectList={setProjectList}
           />
         )}
-
         <label className="text-lavender text-3xl mx-6 my-3 font-bold">Skills</label>
+        <div>
         {selectedSkills.map((skill, index) => (
           <Skill style={"Sefs"} onClick={() => removeSkill(skill)} key={index}>
             {skill}
           </Skill>
         ))}
+        </div>
         <br />
         <div className="mx-6">
           {availableSkills.map((skill, index) => (
