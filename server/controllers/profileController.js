@@ -21,7 +21,7 @@ exports.createProfile = async (req, res, next) => {
     const profileUser = await User.findById(req.user._id);
     console.log("profileUser : \n", profileUser);
 
-    const { name, email, password, confirmPassword, role, avatar, branch, collegeStartYear, shortBio, experience, skills,  } = req.body;
+    const { name, email, password, confirmPassword, role, avatar, branch, collegeStartYear, shortBio, workHistory, skills,  } = req.body;
     // Check if all required fields are present
 
     // if ( !branch || !collegeStartYear || !shortBio ) {
@@ -40,7 +40,7 @@ exports.createProfile = async (req, res, next) => {
     (profileUser.shortBio = req.body.shortBio),
     (profileUser.longDesc = req.body.longDesc);
     (profileUser.skills = req.body.skills);
-    (profileUser.experience = req.body.experience);
+    (profileUser.workHistory = req.body.workHistory);
     (profileUser.achievements = req.body.achievements);
     (profileUser.projects = req.body.projects);
 
@@ -70,7 +70,7 @@ exports.updateProfile = catchAsync(async (req, res, next) => {
   //   );
 
   // 2) Update required Data :
-  const filteredFields = filterObj(req.body, "avatar", "portfolio", "branch", "collegeStartYear", "shortBio", "longDesc", "skills", "experience", "achievements", "projects");
+  const filteredFields = filterObj(req.body, "avatar", "portfolio", "branch", "collegeStartYear", "shortBio", "longDesc", "skills", "workHistory", "achievements", "projects");
 
   const updateProfile = await User.findByIdAndUpdate(
     req.user._id,
