@@ -32,7 +32,6 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   // 2) Update required Data :
   const filteredFields = filterObj(req.body, "name", "email");
 
-
   const updateUser = await User.findByIdAndUpdate(
     req.user._id,
     filteredFields,
@@ -50,29 +49,38 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   });
 });
 
-
-exports.deleteMe =  catchAsync(async(req, res, next) => {
+exports.deleteMe = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user._id, { active: false });
 
   res.status(204).json({
-    status: 'success',
-    message: 'Your account is succesfully deactivated',
-    data: null
-  })
-})
+    status: "success",
+    message: "Your account is succesfully deactivated",
+    data: null,
+  });
+});
 
-// exports.getSingleUser = catchAsync((req, res, next) => {
-//   console.log(req.params);
-//   const user = req.user;
+exports.getSingleUser = catchAsync(async (req, res, next) => {
+  // console.log(req.params);
+  const userId = req.params.id;
+  const user = await User.findById(userId);
 
-//   res.status(200).json({
-//     status: "Success",
-//     message: "User Data receives",
-//     data:{
-//       user
-//     }
-//   });
-// });
+  // Check if the authenticated user ID matches the requested user ID
+  if (req.user._id.toString() !== userId) {
+    return res.status(403).json({
+      status: "Fail",
+      message: "Unauthorized access to user data",
+      data: null,
+    });
+  }
+
+  res.status(200).json({
+    status: "Success",
+    message: "User Data receives",
+    data: {
+      user,
+    },
+  });
+});
 
 exports.createUser = catchAsync((req, res, next) => {
   res.status(500).json({
@@ -80,8 +88,6 @@ exports.createUser = catchAsync((req, res, next) => {
     message: "This route is not yet defined",
   });
 });
-
-
 
 exports.updateUser = catchAsync((req, res, next) => {
   res.status(500).json({

@@ -3,6 +3,9 @@ const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
 const User = require("./../model/userModal");
 
+const multer = require('multer')
+const uploadMiddleware = multer({ dest: 'uploads/'})
+
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
   Object.keys(obj).forEach((el) => {
@@ -11,8 +14,13 @@ const filterObj = (obj, ...allowedFields) => {
   return newObj;
 };
 
-exports.createProfile = async (req, res, next) => {
+exports.createProfile = uploadMiddleware.single('avatar'), async (req, res, next) => {
   try {
+
+    // HANDLING THE AVATAR FILE
+    console.log(req.file)
+
+
     // STEPS //
     // 1) Get current logged-in user from Database :
     const profileUser = await User.findById(req.user._id);
@@ -30,7 +38,7 @@ exports.createProfile = async (req, res, next) => {
     }
 
     // 2) Update the profile details and save the details in the last :
-    (profileUser.avatar = req.body.avatar),
+    // (profileUser.avatar = req.body.avatar),
     (profileUser.portfolioWebsite = req.body.portfolioWebsite),
     (profileUser.branch = req.body.branch),
     (profileUser.collegeStartYear = req.body.collegeStartYear),
