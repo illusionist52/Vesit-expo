@@ -1,7 +1,7 @@
 // import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { login } from "../Users/userSlice";
+import { login } from "../Slices/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import "./../../src/index.css";
 

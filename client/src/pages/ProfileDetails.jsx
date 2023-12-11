@@ -4,9 +4,8 @@ import AcademicDetails from "../Components/AcademicDetails";
 import Description from "../Components/Description";
 import Progress from "../Components/ProjectDetails";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectUser } from "../Users/userSlice";
-import store from "../Users/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../Slices/userSlice";
 import createProfie from "../services/apiProfile";
 import "../../src/index.css";
 import Button from "../Components/Button";
@@ -14,10 +13,12 @@ import ProjectTile from "../Components/ProjectTile";
 import Skill from "../Components/Skill";
 import ProjectDetails from "../Components/ProjectDetails";
 import AvatarUpload from "../Components/AvatarUpload";
+import { createProfile } from "../Slices/profileSlice";
 
 function ProfileDetails() {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [project, setProject] = useState(false);
   const [list, setList] = useState(false);
   const [avatar, setAvatar] = useState(null);
@@ -77,7 +78,7 @@ function ProfileDetails() {
       achievements: [],
       skills: [...selectedSkills],
     };
-    const apiData = await createProfie(data, user.id, user.token);
+    const apiData = await dispatch(createProfile(data, user.id,user.token));
     if (apiData.success === "success") navigate("/");
   }
   return (
@@ -133,7 +134,7 @@ function ProfileDetails() {
           <div className="input-wrapper mx-6">
             <input
               className="input"
-              placeholder="Bio"
+              placeholder="Short Bio"
               type="text"
               name="portfolio"
               {...register("shortBio")}

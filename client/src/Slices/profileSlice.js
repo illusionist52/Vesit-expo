@@ -1,0 +1,60 @@
+import { createSlice } from "@reduxjs/toolkit"
+
+const initialState = {
+  avatar: null,
+  portfolioWebsite: "",
+  branch: "",
+  collegeStartYear:null,
+  shortBio: "",
+  longDesc: "",
+  projects: [],
+  skills: [],
+  experience: [],
+  achievements: []
+}
+
+const profileSlice = createSlice({
+  name:"profile",
+  initialState,
+  reducers:{
+    createProfile(state,action){
+      state.avatar=action.payload.avatar;
+      state.portfolio=action.payload.portfolioWebsite;
+      state.branch=action.payload.branch;
+      state.year=action.payload.collegeStartYear;
+      state.shortBio=action.payload.shortBio;
+      state.longDescription=action.payload.longDescription;
+      state.projects=action.payload.projects;
+      state.skills=action.payload.skills;
+      state.achievements=action.payload.achievements;
+    }
+  }
+})
+
+export function createProfile(data,id,token){
+
+  return async function (dispatch,getState){
+    try{
+      const res = await fetch(`http://localhost:3002/api/v1/users/createProfile/${id}`,{
+      method: 'PATCH',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json ',
+        "Authorization": `Bearer ${token}`
+        
+      }})
+      const data2 = await res.json()
+      console.log(data2)
+      toast.success("profile created successfully")
+      dispatch({type:"profile/createProfile" , payload:data})
+      return data2;
+    }
+    catch {
+      throw new Error("something went wrong")
+    }
+
+  }
+
+}
+export const { reducer } = profileSlice;
+export const selectProfile = (state) => state.profile

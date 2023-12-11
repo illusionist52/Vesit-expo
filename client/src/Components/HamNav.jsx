@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, selectUser } from "../Users/userSlice";
+import { logout, selectUser } from "../Slices/userSlice";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import { navVariants } from "../styles/motion";

@@ -2,7 +2,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, selectUser } from "../Users/userSlice";
+import { logout, selectUser } from "../Slices/userSlice";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -71,7 +71,7 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
           <NavLink to="profile">
             <div className="flex gap-2 justify-center items-center">
               <h2 className="text-lavender font-bold text-xl">{user.name}</h2>
-              <img src={user.avatar} className="w-[50px]" />
+              <img src={user.avatar ? user.avatar : "../../public/user.png"} className="w-[50px]" />
             </div>
           </NavLink>
           <Button

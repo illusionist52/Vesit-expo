@@ -1,6 +1,6 @@
 // import React from "react";
 import { useForm } from "react-hook-form";
-import { signup } from "../Users/userSlice";
+import { signup } from "../Slices/userSlice";
 import { useDispatch } from "react-redux";
 // import createUser from "../services/apiUsers";
 import { Link } from "react-router-dom";

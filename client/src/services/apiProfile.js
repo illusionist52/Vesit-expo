@@ -11,6 +11,7 @@ export default async function createProfie(data, id, token){
       "Authorization": `Bearer ${token}`
       
     }})
+    console.log(data)
     const data2 = await res.json()
     console.log(data2)
     toast.success("profile created successfully")

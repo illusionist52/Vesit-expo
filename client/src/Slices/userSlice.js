@@ -10,7 +10,7 @@ const initialState = {
   token: "",
 };
 
-function loadState(){
+export function loadState(){
   try {
     const serializedState = localStorage.getItem('authState');
     return serializedState ? JSON.parse(serializedState) : initialState;
@@ -19,7 +19,7 @@ function loadState(){
     return initialState;
   }
 }
-function saveState(state){
+export function saveState(state){
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('authState', serializedState);
@@ -64,7 +64,8 @@ export const {logout} = userSlice.actions;
 export function login(data) {
     // return { type: "login", payload: data };
     return async function (dispatch, getState){
-      let name, email, password, token, id,avatar = ""
+      let name, email, password, token, id,avatar,shortBio,longDescription,portfolioWebsite,collegeStartYear,branch = ""
+      let projects,experience,skills,achievements = []
       const res = await fetch(`http://localhost:3002/api/v1/users/login`,{
         method: "POST",
         body: JSON.stringify(data),
@@ -74,24 +75,18 @@ export function login(data) {
       });
       
       const login_data_recieved = await res.json();
-      console.log(name, email,password)
       if(login_data_recieved.token){
-        toast.success("Logged in successfully")
-        const userData = login_data_recieved.data.user
-        id= userData._id;
-        name= userData.name;
-        email = userData.email;
-        password = userData.password;
-        token=login_data_recieved.token;
-        avatar=userData.avatar
+        ( { _id: id, name, avatar ,branch, collegeStartYear,shortBio,longDescription,projects,experience,skills,achievements} = login_data_recieved.data.user);
+        token = login_data_recieved.token
         }
         else{
           toast.error(login_data_recieved.message)
         }
         data = {...data,name, token, id, avatar}
+        const profileData = {avatar,portfolioWebsite,branch,collegeStartYear,shortBio,longDescription,projects,achievements,experience,skills}
         console.log(login_data_recieved);
         dispatch({type: "user/login", payload: data });
-        console.log(store.getState());
+        dispatch({type: "profile/createProfile", payload: profileData})
         return login_data_recieved
     }
   }
@@ -134,22 +129,10 @@ export function login(data) {
   }
 
 
-
-
-const store = configureStore({
-  reducer: {
-    user: userSlice.reducer
-  },
-  preloadedState:loadState()
-})
-
-store.subscribe(()=>{
-  saveState(store.getState())
-})
+export const { reducer } = userSlice;
 
 export const selectUser = (state) => state.user
 
-export default store;
 
 
 

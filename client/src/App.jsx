@@ -6,7 +6,6 @@ import ExperiencesPage from "./pages/ExperiencesPage";
 import CompaniesPages from "./pages/CompaniesPages";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import "./Users/userSlice";
 import { Toaster } from "react-hot-toast";
 import Applayout from "./pages/Applayout";
 import ProfilePage from "./pages/ProfilePage";
