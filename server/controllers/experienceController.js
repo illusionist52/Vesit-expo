@@ -44,7 +44,8 @@ exports.createPost = catchAsync(async (req, res, next) => {
     message: "Post has been created",
     data: {
         ExperienceData : ExperienceData
-    }
+    },
+    files : req.file
   });
 });
 

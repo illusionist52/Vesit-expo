@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const User = require('./userModal');
 
 const experienceSchema = new mongoose.Schema({
     title: {
@@ -16,7 +17,13 @@ const experienceSchema = new mongoose.Schema({
     mainContent: {
         type: String,
         required: true
-    }
+    },
+    userId:[
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: User
+        }
+    ]
 },{
     timestamps: true,
 })

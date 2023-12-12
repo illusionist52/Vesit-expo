@@ -79,7 +79,7 @@ function ProfileDetails() {
       skills: [...selectedSkills],
     };
     const apiData = await dispatch(createProfile(data, user.id,user.token));
-    if (apiData.success === "success") navigate("/");
+    // if (apiData.success === "success") navigate("/");
   }
   return (
     <div className="flex flex-col justify-center items-center gap-8 p-3 md:max-w-3xl md:rounded-xl md:bg-light_gray md:my-10 md:mx-auto text-lavender">

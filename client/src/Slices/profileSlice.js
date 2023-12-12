@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import toast from "react-hot-toast";
 const initialState = {
-  avatar: null,
+  avatar: {},
   portfolioWebsite: "",
   branch: "",
   collegeStartYear:null,
@@ -38,13 +38,11 @@ export function createProfile(data,id,token){
       method: 'PATCH',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'multipart/form-data',
-        "Authorization": `Bearer ${token}`
-        
+        "Authorization": `Bearer ${token}`        
       }})
       const data2 = await res.json()
-      console.log(data2)
-      console.log(data)
+      console.log( "DATA2 : ", data2)
+      console.log( "DATA : ", data)
       toast.success("profile created successfully")
       dispatch({type:"profile/createProfile" , payload:data})
       return data2;
