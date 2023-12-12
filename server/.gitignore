@@ -7,6 +7,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+<<<<<<< HEAD
+node_modules
+config.env
+dist
+dist-ssr
+*.local
+=======
 .prettierrc
 .eslintrc.json
 config.env
@@ -15,6 +22,7 @@ dist
 dist-ssr
 *.local
 /STUDY.txt
+>>>>>>> 3185d82fc5a2d67bafb74de1554a3ab8ec3e5d76
 
 # Editor directories and files
 .vscode/*
