@@ -43,8 +43,9 @@ export function createProfile(data, stateData, id, token) {
         {
           method: "PATCH",
           body: data,
+          // credentials: true,
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
           },
         },
       );

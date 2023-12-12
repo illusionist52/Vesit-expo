@@ -80,8 +80,7 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
           <NavLink to="profile">
             <div className="flex gap-2 justify-center items-center">
               <h2 className="text-lavender font-bold text-xl">{user.name}</h2>
-              {/* <img src={profile.avatar ?`http://localhost:3002/${profile.avatar}` : "../../public/user.png"} className="w-[50px]" alt="bhakchodi"/> */}
-              <img src={`http://localhost:3002/${profile?.avatar}`} alt="profile photo"/>
+              <img src={profile.avatar ?`http://localhost:3002/${profile.avatar}` : "../../public/user.png"} className="w-[50px]" alt={`${user.name}'s PHOTO`}/>
             </div>
           </NavLink>
           <Button

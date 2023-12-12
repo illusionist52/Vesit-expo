@@ -78,6 +78,7 @@ export function login(data) {
       if(login_data_recieved.token){
         ( { _id: id, name, avatar ,branch, collegeStartYear,shortBio,longDescription,projects,experience,skills,achievements} = login_data_recieved.data.user);
         token = login_data_recieved.token
+        avatar = avatar.split('\\')[1]
         }
         else{
           toast.error(login_data_recieved.message)
