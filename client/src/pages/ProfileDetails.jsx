@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import AcademicDetails from "../Components/AcademicDetails";
 import Description from "../Components/Description";
 import Progress from "../Components/ProjectDetails";
@@ -21,7 +21,7 @@ function ProfileDetails() {
   const dispatch = useDispatch();
   const [project, setProject] = useState(false);
   const [list, setList] = useState(false);
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState("");
   const [projectTitle, setProjectTitle] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
   const [techStackUsed, setTechStackUsed] = useState("");
@@ -78,7 +78,19 @@ function ProfileDetails() {
       achievements: [],
       skills: [...selectedSkills],
     };
-    const apiData = await dispatch(createProfile(data, user.id,user.token));
+    console.log(avatar)
+    
+    // formData.set("longDesc",data.longDesc)
+    // formData.set("shortBio",data.shortBIo)
+    // formData.set("collegeStartYear",data.collegeStartYear)
+    // formData.set("branch",data.branch)
+    // formData.set("portfolioWebsite",data.portfolioWebsite)
+    // formData.set("workiHistory", [])
+    // formData.set("projects", [...projectList])
+    // formData.set("achievements", [])
+    // formData.set("skills", [...selectedSkills])
+
+    const apiData = await dispatch(createProfile(avatar, user.id,user.token));
     // if (apiData.success === "success") navigate("/");
   }
   return (
@@ -88,7 +100,8 @@ function ProfileDetails() {
       <p className="text-center"> Personalize your experience by providing some details about yourself. We respect your privacy, and this information will only be visible to others if you choose to make it public.</p>
       <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col items-center justify-center my-4">
-        <AvatarUpload setAvatar={setAvatar}/>
+        {/* <AvatarUpload setAvatar={setAvatar}/> */}
+        <input type="file" onChange={(e)=>setAvatar(e.target.files[0])}/>
       <label className="text-center">Your avatar</label>
         
         </div>

@@ -7,8 +7,7 @@ const AvatarUpload = ({setAvatar}) => {
     const file = e.target.files[0];
     setAvatar(file)
 
-    const formData = new FormData()
-    formData.set('avatar', file)
+
 
     if (file) {
       const reader = new FileReader();
@@ -16,6 +15,8 @@ const AvatarUpload = ({setAvatar}) => {
       reader.onload = function (event) {
         setAvatarPreview(event.target.result);
       };
+      
+      
       reader.readAsDataURL(file);
     }
   };

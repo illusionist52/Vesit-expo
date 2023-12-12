@@ -10,9 +10,9 @@ exports.uploadFile = uploadMiddleware.single('coverImage');
 
 exports.createPost = catchAsync(async (req, res, next) => {
 
-  if(!req.file){
-    return next(new AppError('No file uploaded'), 404);
-  }
+  // if(!req.file){
+  //   return next(new AppError('No file uploaded'), 404);
+  // }
 
   console.log("REQ FILE :", req.file);
   const reqFileData = {...req.file}

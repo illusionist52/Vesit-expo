@@ -25,13 +25,13 @@ exports.createProfile = async (req, res, next) => {
     // console.log("FILE is being uploaded")
     // res.status(200).json({ files: req.avatar });
 
-    console.log("REQ FILE :", req.file);
+    console.log("REQ FILE :", req.body.avatar, req.file);
 
     if (!req.file) {
       return next(new AppError("No file uploaded"), 404);
     }
 
-    console.log("REQ FILE :", req.file);
+    console.log("REQ FILE :", req.body.avatar);
     const reqFileData = { ...req.file };
 
     const { originalname, path } = req.file;
