@@ -3,8 +3,8 @@ const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
 const User = require("./../model/userModal");
 
-const multer = require('multer')
-const uploadMiddleware = multer({ dest: 'uploads/'})
+const multer = require("multer");
+const uploadMiddleware = multer({ dest: "uploads/" });
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -14,53 +14,60 @@ const filterObj = (obj, ...allowedFields) => {
   return newObj;
 };
 
-exports.createProfile = async (req, res, next) => {
-  try {
-    // STEPS //
-    // 1) Get current logged-in user from Database :
-    const profileUser = await User.findById(req.user._id);
-    console.log("profileUser : \n", profileUser);
+(exports.createProfile = uploadMiddleware.single("avatar")),
+  async (req, res, next) => {
+    try {
+      console.log("FILE IS UPLOADING")
+      const originalName = req.file.originalname;
+      console.log("ORIGINALNAME : ", originalName);
+      console.log("FILE is being uploaded")
+      res.status(200).json({ files: req.avatar });
 
-    const { name, email, password, confirmPassword, role, avatar, branch, collegeStartYear, shortBio, workHistory, skills,  } = req.body;
-    // Check if all required fields are present
+      // STEPS //
+      // 1) Get current logged-in user from Database :
+      // const profileUser = await User.findById(req.user._id);
+      // console.log("profileUser : \n", profileUser);
 
-    // if ( !branch || !collegeStartYear || !shortBio ) {
-    //   return next(new AppError('Incomplete required Profile details'), 400);
-    // }
+      // const { name, email, password, confirmPassword, role, avatar, branch, collegeStartYear, shortBio, workHistory, skills,  } = req.body;
+      // // Check if all required fields are present
 
-    if (name || email || password || confirmPassword || role) {
-      return next(new AppError('Cannot update login credentials in Profile updations'), 400);
+      // // if ( !branch || !collegeStartYear || !shortBio ) {
+      // //   return next(new AppError('Incomplete required Profile details'), 400);
+      // // }
+
+      // if (name || email || password || confirmPassword || role) {
+      //   return next(new AppError('Cannot update login credentials in Profile updations'), 400);
+      // }
+
+      // // 2) Update the profile details and save the details in the last :
+      // (profileUser.avatar = req.body.avatar),
+      // (profileUser.portfolioWebsite = req.body.portfolioWebsite),
+      // (profileUser.branch = req.body.branch),
+      // (profileUser.collegeStartYear = req.body.collegeStartYear),
+      // (profileUser.shortBio = req.body.shortBio),
+      // (profileUser.longDesc = req.body.longDesc);
+      // (profileUser.skills = req.body.skills);
+      // (profileUser.workHistory = req.body.workHistory);
+      // (profileUser.achievements = req.body.achievements);
+      // (profileUser.projects = req.body.projects);
+
+      // await profileUser.save({validateModifiedOnly: true});
+
+      // // 3) Send response of update :
+      // res.status(200).json({
+      //   success: "success",
+      //   data: {
+      //     profileUser,
+      //   },
+      // });
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({
+        message: "fail",
+        ERROR: err,
+      });
     }
-
-    // 2) Update the profile details and save the details in the last :
-    (profileUser.avatar = req.body.avatar),
-    (profileUser.portfolioWebsite = req.body.portfolioWebsite),
-    (profileUser.branch = req.body.branch),
-    (profileUser.collegeStartYear = req.body.collegeStartYear),
-    (profileUser.shortBio = req.body.shortBio),
-    (profileUser.longDesc = req.body.longDesc);
-    (profileUser.skills = req.body.skills);
-    (profileUser.workHistory = req.body.workHistory);
-    (profileUser.achievements = req.body.achievements);
-    (profileUser.projects = req.body.projects);
-
-    await profileUser.save({validateModifiedOnly: true});
-
-    // 3) Send response of update :
-    res.status(200).json({
-      success: "success",
-      data: {
-        profileUser,
-      },
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(400).json({
-      message: "fail",
-      ERROR: err,
-    });
-  }
-};
+  };
 
 exports.updateProfile = catchAsync(async (req, res, next) => {
   // 1) Don't allow for password updates :
@@ -70,7 +77,19 @@ exports.updateProfile = catchAsync(async (req, res, next) => {
   //   );
 
   // 2) Update required Data :
-  const filteredFields = filterObj(req.body, "avatar", "portfolio", "branch", "collegeStartYear", "shortBio", "longDesc", "skills", "workHistory", "achievements", "projects");
+  const filteredFields = filterObj(
+    req.body,
+    "avatar",
+    "portfolio",
+    "branch",
+    "collegeStartYear",
+    "shortBio",
+    "longDesc",
+    "skills",
+    "workHistory",
+    "achievements",
+    "projects"
+  );
 
   const updateProfile = await User.findByIdAndUpdate(
     req.user._id,

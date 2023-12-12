@@ -32,14 +32,13 @@ const profileSlice = createSlice({
 })
 
 export function createProfile(data,id,token){
-
   return async function (dispatch,getState){
     try{
       const res = await fetch(`http://localhost:3002/api/v1/users/createProfile/${id}`,{
       method: 'PATCH',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json ',
+        'Content-Type': 'multipart/form-data',
         "Authorization": `Bearer ${token}`
         
       }})
