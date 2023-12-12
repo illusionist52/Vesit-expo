@@ -21,8 +21,8 @@ function ProfilePage() {
 
       {/* DETAILS */}
       <div className="text-center">
-        <h1 className="text-lg text-slate-200">{user.name}</h1> {/* NAME */}
-        <h3 className="text-md text-slate-200/70">{user.email}</h3>{" "}
+        <h1 className="text-lg text-slate-200">{user?.name}</h1> {/* NAME */}
+        <h3 className="text-md text-slate-200/70">{user?.email}</h3>{" "}
         {/* NAME */}
       </div>
 
@@ -30,26 +30,26 @@ function ProfilePage() {
       <div className="text-left mx-5 mt-10">
         <h1 className="text-4xl text-slate-200 font-bold mb-2">KNOW ME</h1>
         <p className="">
-          {profile.longDesc}
+          {profile?.longDesc}
         </p>
       </div>
 
       {/* PROJECTS */}
       <ul className="mx-5 mt-10">
         <h1 className="text-4xl text-slate-200 font-bold mb-2">PROJECTS</h1>
-        {profile.projects.map((project,index)=><ProjectsTile key={index} project={project}/>)}
+        {/* {profile?.projects.map((project,index)=><ProjectsTile key={index} project={project}/>)} */}
       </ul>
 
       {/* SKILLS */}
       <div className="mx-5 mt-10">
         <h1 className="text-4xl text-slate-200 font-bold mb-2">SKILLS</h1>
-        {profile.skills.map((skill)=><Skill>{skill}</Skill>)}
+        {/* {profile?.skills.map((skill)=><Skill>{skill}</Skill>)} */}
       </div>
 
       {/* ACHIEVEMENTS */}
       <ul className="mx-5 mt-10">
         <h1 className="text-4xl text-slate-200 font-bold mb-2">ACHIEVEMENTS</h1>
-        {profile.achievements}
+        {profile?.achievements}
       </ul>
     </div>
   );

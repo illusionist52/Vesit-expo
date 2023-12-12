@@ -72,26 +72,26 @@ function ProfileDetails() {
   async function onSubmit(data) {
     data = {
       ...data,
-      avatar:avatar,
       workHistory: [],
       projects: [...projectList],
       achievements: [],
       skills: [...selectedSkills],
     };
-    console.log(avatar)
-    
-    // formData.set("longDesc",data.longDesc)
-    // formData.set("shortBio",data.shortBIo)
-    // formData.set("collegeStartYear",data.collegeStartYear)
-    // formData.set("branch",data.branch)
-    // formData.set("portfolioWebsite",data.portfolioWebsite)
-    // formData.set("workiHistory", [])
-    // formData.set("projects", [...projectList])
-    // formData.set("achievements", [])
-    // formData.set("skills", [...selectedSkills])
+    // console.log(avatar)
+    const formData = new FormData();
+    formData.set("avatar",avatar)
+    formData.set("longDesc",data.longDesc)
+    formData.set("shortBio",data.shortBIo)
+    formData.set("collegeStartYear",data.collegeStartYear)
+    formData.set("branch",data.branch)
+    formData.set("portfolioWebsite",data.portfolioWebsite)
+    formData.set("workiHistory", [])
+    formData.set("projects", [...projectList])
+    formData.set("achievements", [])
+    formData.set("skills", [...selectedSkills])
 
-    const apiData = await dispatch(createProfile(avatar, user.id,user.token));
-    // if (apiData.success === "success") navigate("/");
+    const apiData = await dispatch(createProfile(formData,data, user.id,user.token));
+    if (apiData.success === "success") navigate("/");
   }
   return (
     <div className="flex flex-col justify-center items-center gap-8 p-3 md:max-w-3xl md:rounded-xl md:bg-light_gray md:my-10 md:mx-auto text-lavender">
@@ -100,8 +100,8 @@ function ProfileDetails() {
       <p className="text-center"> Personalize your experience by providing some details about yourself. We respect your privacy, and this information will only be visible to others if you choose to make it public.</p>
       <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col items-center justify-center my-4">
-        {/* <AvatarUpload setAvatar={setAvatar}/> */}
-        <input type="file" onChange={(e)=>setAvatar(e.target.files[0])}/>
+        <AvatarUpload setAvatar={setAvatar}/>
+        {/* <input type="file" onChange={(e)=>setAvatar(e.target.files[0])}/> */}
       <label className="text-center">Your avatar</label>
         
         </div>

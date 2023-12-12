@@ -17,7 +17,7 @@ function Homepage() {
 
   useEffect(()=>{
     console.log(user)
-    console.log(profile)
+    console.log("PROFILE",profile)
   },[user])
   return (
     <div>

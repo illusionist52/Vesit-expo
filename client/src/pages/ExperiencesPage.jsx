@@ -1,8 +1,9 @@
 import React from 'react'
+import CreatePost from '../Components/CreatePost'
 
 function ExperiencesPage() {
   return (
-    <div>BlogsPage</div>
+    <div><CreatePost/></div>
   )
 }
 

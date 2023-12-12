@@ -10,10 +10,19 @@ import { motion } from "framer-motion";
 import { navVariants } from "../styles/motion";
 import { ImCross } from "react-icons/im";
 import "../index.css";
+import { selectProfile } from "../Slices/profileSlice";
+
+
+
 function Navbar({ setToggleHamburger, toggleHamburger }) {
   const user = useSelector(selectUser);
+  const profile = useSelector(selectProfile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(function(){
+    console.log(`http://localhost:3002/${profile.avatar}`)
+  },[profile])
   function Navigator(to) {
     navigate(to);
   }
@@ -71,7 +80,8 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
           <NavLink to="profile">
             <div className="flex gap-2 justify-center items-center">
               <h2 className="text-lavender font-bold text-xl">{user.name}</h2>
-              <img src={user.avatar ? user.avatar : "../../public/user.png"} className="w-[50px]" />
+              {/* <img src={profile.avatar ?`http://localhost:3002/${profile.avatar}` : "../../public/user.png"} className="w-[50px]" alt="bhakchodi"/> */}
+              <img src={`http://localhost:3002/${profile?.avatar}`} alt="profile photo"/>
             </div>
           </NavLink>
           <Button

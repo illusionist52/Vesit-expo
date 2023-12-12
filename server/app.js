@@ -41,6 +41,7 @@ app.use("/api", limiter);
 
 // Body Parser, reading data from req.body :
 app.use(express.json());
+app.use( "/" , express.static("uploads"))
 // app.use(express.json({ limit: '10kb' }));
 
 // Data Sanitization : "email : { $gt: ' ' } --> Gets accepted.
