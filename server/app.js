@@ -13,8 +13,8 @@ const globalErrorHandler = require("./controllers/errorController");
 
 // MANUAL FILE IMPORTS :
 const userRoutes = require("./routes/userRoutes");
-const profileRoutes = require('./routes/profileRoutes');
-const experienceRoutes = require('./routes/experienceRoutes');
+const profileRoutes = require("./routes/profileRoutes");
+const experienceRoutes = require("./routes/experienceRoutes");
 
 // INSTANCE OF EXPRESS :
 const app = express();
@@ -24,7 +24,8 @@ const app = express();
 // >> GLOCAL MIDDLEWARES :
 
 // Security HTTP Header:
-app.use(helmet());
+// app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 // Logger ==> To check request type :
 if (process.env.NODE_ENV === "development") {
@@ -41,7 +42,7 @@ app.use("/api", limiter);
 
 // Body Parser, reading data from req.body :
 app.use(express.json());
-app.use( "/" , express.static("uploads"))
+app.use("/", express.static("uploads"));
 // app.use(express.json({ limit: '10kb' }));
 
 // Data Sanitization : "email : { $gt: ' ' } --> Gets accepted.
@@ -53,7 +54,7 @@ app.use(xss());
 // Backend - FrontEnd connections :
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "http://localhost:3002"],
     credentials: true,
     methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
   })
