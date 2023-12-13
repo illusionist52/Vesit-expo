@@ -1,40 +1,17 @@
 const Experience = require("./../model/experienceModal");
-const multer = require("multer");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
-const fs = require('fs');
-
-const uploadMiddleware = multer({ dest: "./uploads/" });
-
-exports.uploadFile = uploadMiddleware.single('coverImage');
 
 exports.createPost = catchAsync(async (req, res, next) => {
-
-  // if(!req.file){
-  //   return next(new AppError('No file uploaded'), 404);
-  // }
-
-  console.log("REQ FILE :", req.file);
-  const reqFileData = {...req.file}
-
-  const {originalname, path} = req.file;
-  const ext = originalname.split('.')[1]
-
-  console.log(ext);
   
-  const newPath = (path+'.'+ext);
-  fs.renameSync(path, newPath);
+  const { title, summary, mainContent, cgpa, date, domain } = req.body;
 
-  console.log(reqFileData);
-  
-  const { title, summary, coverImage = newPath, mainContent } = req.body;
-
-  if (!title || !summary || !coverImage || !mainContent) {
+  if (!title || !summary || !mainContent || !cgpa || !date || !domain) {
     return next(new AppError("Please provide all required fields", 400));
   }
 
   const ExperienceData = await Experience.create({
-    title, summary, coverImage: newPath, mainContent
+    title, summary, mainContent, cgpa, date, domain
   });
 
   console.log(ExperienceData);
@@ -44,8 +21,7 @@ exports.createPost = catchAsync(async (req, res, next) => {
     message: "Post has been created",
     data: {
         ExperienceData : ExperienceData
-    },
-    files : req.file
+    }
   });
 });
 

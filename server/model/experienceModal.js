@@ -10,11 +10,19 @@ const experienceSchema = new mongoose.Schema({
         type: String, 
         require: true
     },
-    coverImage: {
+    mainContent: {
         type: String,
         required: true
     },
-    mainContent: {
+    cgpa: {
+        type: Number,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    },
+    domain: {
         type: String,
         required: true
     },
