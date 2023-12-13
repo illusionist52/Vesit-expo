@@ -1,37 +1,3 @@
-// import { FaBuromobelexperte, FaTrophy, FaUser } from "react-icons/fa6";
-
-// function Milestones() {
-//   return (
-//     <div className="bg-slate-200/90 text-dark_purple px-10">
-//       <h2 className="flex justify-center py-5 mx-7 text-4xl font-bold">
-//         Engagement Dashboard
-//       </h2>
-//       <div className="md:flex md:justify-around md:items-center py-6">
-//         <div className="m-5 max-w-md h-[13rem] p-2 flex-col items-center rounded-lg">
-//           <FaUser size={40} />
-//           <h3 className="mt-4 text-3xl font-semibold">
-//             48 Users have become member to date
-//           </h3>
-//         </div>
-//         <div className="m-5 max-w-md h-[13rem] p-2 flex-col items-center rounded-lg bg-light_blue">
-//           <FaBuromobelexperte size={40} />
-//           <h3 className="mt-4 text-3xl font-semibold">
-//             12 Experiences have been contributed so far
-//           </h3>
-//         </div>
-//         <div className="m-5 max-w-md h-[13rem] p-2 flex-col items-center rounded-lg">
-//           <FaTrophy size={40} />
-//           <h3 className="mt-4 text-3xl font-semibold">
-//             39 Companies have engaged our services for recruiting developers.
-//           </h3>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Milestones;
-
 import "./../../src/index.css";
 
 function Milestones() {
@@ -39,8 +5,8 @@ function Milestones() {
     <div className="mx-5 mt-20 md:flex md:justify-center md:gap-[200px] md:w-80% md:mx-auto">
       <div>
         <div className="md:flex md:flex-col">
-          <p className="text-slate-200/50">What AcademIQ provides</p>
-          <h1 className="flex text-5xl font-bold md:text-7xl">You can get</h1>
+          <p className="text-slate-200/50 text-center">What AcademIQ provides</p>
+          <h1 className="text-4xl font-bold text-slate-200 text-center md:text-6xl md:mb-10">You can get</h1>
         </div>
         <div className="mt-5 flex flex-col gap-4 md:mx-auto">
           <div className="max-w-lg flex gap-3 items-center rounded-lg md:flex md:justify-center md:gap-10 md:items-center md:text-center">
