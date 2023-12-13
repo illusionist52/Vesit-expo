@@ -10,12 +10,13 @@ function ProfilePage() {
 
   const profile = useSelector(selectProfile);
   const user = useSelector(selectUser)
+
   return (
     <div className="bg-gray mb-10">
       <div className="h-[150px] w-full bg-light_purple flex justify-center"></div>
       <img
         className="border-2 border-slate-200 p-1 rounded-full -mt-[50px] w-[150px] mx-auto"
-        src={profile.avatar ? profile.avatar :"/user.png"}
+        src={profile.avatar ? `http://localhost:3002/${profile.avatar}`:"/user.png"}
         alt="USER PHOTO"
       />
 
