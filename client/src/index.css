@@ -15,14 +15,13 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #B298DC;
+  background: #b298dc;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #CE68FE;
+  background: #ce68fe;
 }
-
 
 .glassmorphism {
   background: rgba(255, 255, 255, 0.25);
@@ -91,11 +90,11 @@
   position: relative;
   display: inline-block;
   text-decoration: none;
- /* Set your desired text color */
+  /* Set your desired text color */
 }
 
 .underline-animation:before {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 2px;
@@ -125,7 +124,7 @@
   border-radius: 10px;
   transition: border-color 250ms;
   background-color: transparent;
-  outline: #1C233D;
+  outline: #1c233d;
 
   &::focus {
     outline: none;
@@ -160,5 +159,5 @@
 .input:not(:placeholder-shown) + .label {
   transform: translateY(-80%) scale(0.75);
   border-color: #ce68fe;
-  background-color: #1C233D;
+  background-color: #1c233d;
 }
