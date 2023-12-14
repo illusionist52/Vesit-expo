@@ -18,8 +18,10 @@ function ExperiencesPage() {
             CREATE POST
           </button>
         </div>
-        <div className=" md:p-5 md:h-[500px] overflow-y-scroll no-scrollbar bg-red-400">
-          <ExperienceAccordian />
+        <div className=" md:p-5 md:h-[500px] overflow-y-scroll no-scrollbar md: border md:border-slate-200 md:rounded-3xl flex flex-col gap-y-5">
+          <ExperienceAccordian/>
+          <ExperienceAccordian/>
+          <ExperienceAccordian/>
         </div>
         <Button to="/createpost">Add experience</Button>
       </div>

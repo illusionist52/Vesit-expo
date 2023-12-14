@@ -2,8 +2,46 @@
 
 function FiltersSideBar() {
   return (
-    <div className="hidden md:block w-[30%] md:w-[30%] md:h-full md:bg-white md:rounded-xl md:p-4 md:text-gray">Lorem ipsum dolores voluptatem, est ipsum pariatur accusamus at earum inventore aut natus iste dignissimos dicta et quibusdam libero vero? Provident ut tempora earum corporis natus, maxime consequatur magnam nobis illum laborum, voluptates nam sint consequuntur deserunt qui soluta delectus aut? Est amet at, ea ipsa dolor corporis harum beatae cupiditate vel assumenda laudantium cum fuga aut minus deserunt quod in debitis aperiam voluptate doloribus quae ipsum fugiat dolorem! Quasi amet provident, aliquid quaerat eos commodi maiores, quibusdam dolorem error, veniam consequatur! Suscipit itaque, ea facilis voluptatum adipisci inventore officia amet quod accusantium perspiciatis distinctio eaque facere mollitia deleniti hic nesciunt veritatis provident fugiat doloremque pariatur corrupti sint. Rerum ratione tenetur neque libero, eos unde saepe adipisci recusandae facere ipsum nostrum molestias. Sequi, accusamus aperiam quas deleniti eum provident enim dolores numquam omnis commodi maiores perspiciatis. Maiores dicta omnis repudiandae deserunt ipsa fugiat dolor laboriosam nulla sint. Magni odio non atque ea, necessitatibus architecto.</div>
-  )
+    <div className="hidden md:block w-[30%] md:w-[30%] md:h-full md:bg-white md:rounded-xl md:p-4 md:text-gray">
+      Search by keywords
+      <input className="border-1 border-black ml-5" type="text" />
+      <br /><br />
+
+
+      Year Wise :
+      <select className="border border-black ml-3 rounded-lg px-3 py-1 bg-red-300 w-[90px]">
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+      </select>
+
+      <br /><br />
+
+      Domain Wise :
+      <select className="border border-black ml-3 rounded-lg px-3 py-1 bg-red-300 w-[90px]">
+        <option value="2017">AI</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+      </select>
+
+      <br /><br />
+
+      CGPA : 
+      <label htmlFor="range"> 0 </label>
+      <input type="range" />
+
+    </div>
+  );
 }
 
-export default FiltersSideBar
+export default FiltersSideBar;
