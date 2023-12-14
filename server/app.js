@@ -1,7 +1,7 @@
 //IMPORTS :
 const express = require("express");
 const morgan = require("morgan");
-const cors = require("cors");
+// const cors = require("cors");
 const reteLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
@@ -52,14 +52,19 @@ app.use(mongoSanitize());
 app.use(xss());
 
 // Backend - FrontEnd connections :
-app.use(
-  cors({
-    origin: ["http://localhost:5173", "http://localhost:3002"],
-    credentials: true,
-    methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
-  })
-);
-
+// app.use(
+//   cors({
+//     origin: ["http://localhost:5173", "http://localhost:3002"],
+//     credentials: true,
+//     methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
+//   })
+// );
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'http://localhost:5173',"http://localhost:3002");
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   next();
+// });
 // >> CUSTOM MIDDLEWARE :
 // app.use((req, res, next) => {
 //     console.log('Hello from Middleware 🫂');
