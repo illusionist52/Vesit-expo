@@ -2,6 +2,8 @@ import CompaniesTags from "../Components/CompaniesTags";
 import FiltersSideBar from "../Components/filtersSideBar";
 import ExperienceAccordian from "./../Components/ExperienceAccordian";
 // import Button from "./Button";
+import React from "react";
+import Button from "../Components/Button";
 // import CreatePost from '../Components/CreatePost'
 
 function ExperiencesPage() {
@@ -19,6 +21,7 @@ function ExperiencesPage() {
         <div className=" md:p-5 md:h-[500px] overflow-y-scroll no-scrollbar bg-red-400">
           <ExperienceAccordian />
         </div>
+        <Button to="/createpost">Add experience</Button>
       </div>
     </div>
   );

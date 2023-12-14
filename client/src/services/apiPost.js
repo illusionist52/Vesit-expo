@@ -4,6 +4,7 @@ export async function createPosts(data, token){
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
+        "Content-type": "application/json",
         "Authorization": `Bearer ${token}`        
       }
     })

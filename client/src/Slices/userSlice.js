@@ -6,7 +6,6 @@ const initialState = {
   name: "",
   email: "",
   password: "",
-  avatar: "",
   token: "",
 };
 
@@ -37,7 +36,6 @@ const userSlice = createSlice({
       state.email= action.payload.email;
       state.password= action.payload.password;
       state.token= action.payload.token;
-      state.avatar= action.payload.avatar
     },
     signup(state, action){
       state.id= action.payload.id;
@@ -45,14 +43,12 @@ const userSlice = createSlice({
       state.email= action.payload.email;
       state.password= action.payload.password;
       state.token= action.payload.token;
-      state.avatar= action.payload.avatar
     },
     logout(state){
       state.id = "";
       state.name = "";
       state.email = "";
       state.password = "";
-      state.avatar = "";
       state.token = "";
       localStorage.removeItem('authState');
     }
@@ -83,7 +79,7 @@ export function login(data) {
         else{
           toast.error(login_data_recieved.message)
         }
-        data = {...data,name, token, id, avatar}
+        data = {...data,name, token, id}
         const profileData = {avatar,portfolioWebsite,branch,collegeStartYear,shortBio,longDescription,projects,achievements,experience,skills}
         console.log(login_data_recieved);
         dispatch({type: "user/login", payload: data });
@@ -99,7 +95,7 @@ export function login(data) {
     return async function (dispatch, getState) {
       
       try {
-        let token, id , avatar= ""
+        let token, id = ""
         const res = await fetch(`http://localhost:3002/api/v1/users/signup`, {
           method: "POST",
           body: JSON.stringify(data),
@@ -112,13 +108,12 @@ export function login(data) {
         if(data1.token){
         toast.success("Acount created successfully")
         id = data1.data.user._id
-        avatar = data1.data.user.avatar;
         token=data1.token
         }
         else{
           toast.error(data1.message)
         }
-        data= {...data,id, token, avatar}
+        data= {...data,id, token}
         console.log(data1)
         dispatch({ type: "user/signup", payload: data });
         return data1;

@@ -10,6 +10,7 @@ import { Toaster } from "react-hot-toast";
 import Applayout from "./pages/Applayout";
 import ProfilePage from "./pages/ProfilePage";
 import ProfileDetails from "./pages/ProfileDetails";
+import ExperienceForm from "./pages/ExperienceForm";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/details" element={<ProfileDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/createpost" element={<ExperienceForm />} />
         </Routes>
       </BrowserRouter>
       <Toaster/>

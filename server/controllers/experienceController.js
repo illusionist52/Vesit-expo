@@ -5,8 +5,8 @@ const AppError = require("./../utils/appError");
 exports.createPost = catchAsync(async (req, res, next) => {
   
   const { title, summary, mainContent, cgpa, date, domain } = req.body;
-
-  if (!title || !summary || !mainContent || !cgpa || !date || !domain) {
+  console.log(req.body)
+  if (!title || !summary || !mainContent || !date || !domain) {
     return next(new AppError("Please provide all required fields", 400));
   }
 
