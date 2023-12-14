@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 function Features() {
   return (
-    <div className="flex flex-col p-10 my-[200px] md:flex-row md:justify-center md:items-center md:w-80% md:mx-auto">
+    <div className="flex flex-col p-10 my-[50px] md:my-[200px] md:flex-row md:justify-center md:items-center md:w-80% md:mx-auto">
       <div className="md:flex md:flex-col">
         <p className="text-slate-200/50 text-center">NILANCHAL</p>
         <motion.h2
@@ -40,7 +40,7 @@ function Features() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
-            className="flex flex-col gap-3 p-3 items-center"
+            className="flex flex-col max-w-md  gap-3 p-3 items-center"
           >
             <img
               className="md:w-[200px]"

@@ -2,7 +2,7 @@ import './../../src/index.css'
 
 function Steps() {
   return (
-  <div className='my-[200px]'>
+  <div className='my-[50px] md:my-[200px]'>
     <p className='text-slate-200/50 text-center'>How AcademIQ works</p>
     <h1 className='text-4xl font-bold text-slate-200 text-center md:text-6xl md:mb-10'>Write & share your Moments</h1>
     <div className="relative">
@@ -16,8 +16,8 @@ function Steps() {
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil quae tempora porro, facilis dignissimos possimus rerum cupiditate explicabo consequuntur asperiores.</p>
       </div>
 
-      <div className="relative">
-        <div className='h-[200px] w-56 gradient-03 -z-10'></div>
+      <div className="absolute">
+        <div className='h-[500px] w-[500px] gradient-03 -z-10'></div>
       </div>
 
       <div className='bg-light_gray p-5 rounded-2xl flex flex-col items-center gap-y-4 text-center md:gap-y-10 md:py-10'>

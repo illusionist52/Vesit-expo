@@ -2,12 +2,21 @@ import "./../../src/index.css";
 
 function Milestones() {
   return (
-    <div className="mx-5 mt-20 md:flex md:justify-center md:gap-[200px] md:w-80% md:mx-auto my-[200px]">
+    <div className="mx-5 mt-20 md:flex my-[50px] md:justify-center md:gap-[200px] md:w-80% md:mx-auto md:my-[200px]">
       <div>
         <div className="md:flex md:flex-col">
-          <p className="text-slate-200/50 text-center">What AcademIQ provides</p>
-          <h1 className="text-4xl font-bold text-slate-200 text-center md:text-6xl md:mb-10">You can get</h1>
+          <p className="text-slate-200/50 text-center">
+            What AcademIQ provides
+          </p>
+          <h1 className="text-4xl font-bold text-slate-200 text-center md:text-6xl md:mb-10">
+            You can get
+          </h1>
         </div>
+        <img
+          className="block w-[400px] md:w-[500px] md:hidden"
+          src="./Milestone.png"
+          alt="DEMO PHOTO"
+        />
         <div className="mt-5 flex flex-col gap-4 md:mx-auto">
           <div className="max-w-lg flex gap-3 items-center rounded-lg md:flex md:justify-center md:gap-10 md:items-center md:text-center">
             <img
@@ -50,8 +59,8 @@ function Milestones() {
         <div className="md:w-[300px] md:h-[200px] md:mr-[300px] md:mt-[200px] gradient-01"></div>
       </div>
       <img
-        className="w-[400px] md:w-[500px]"
-        src="./SPIT_LOGO.png"
+        className="w-[400px] hidden md:w-[500px] md:block"
+        src="./Milestone.png"
         alt="DEMO PHOTO"
       />
     </div>
