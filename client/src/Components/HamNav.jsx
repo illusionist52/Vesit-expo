@@ -6,6 +6,8 @@ import { logout, selectUser } from "../Slices/userSlice";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import { navVariants } from "../styles/motion";
+
+
 function HamNav({ toggleHamburger, setToggleHamburger }) {
   const navigate = useNavigate();
   const user = useSelector(selectUser);
@@ -15,10 +17,12 @@ function HamNav({ toggleHamburger, setToggleHamburger }) {
     return (
       <motion.div
         
-        initial="hidden"
-        whileInView="show"
+        initial={{ y: '-100%'}}
+        whileInView={{y: '0'}}
+        exit={{y: '100%'}}
+        transition={{ duration: 0.5 }}
 
-        className={`w-[100%] fixed top-20 z-50 rounded-b-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-br border-gray-100 text-slate-200 md:hidden`}
+        className={`transition-all ease-in-out duration-500 ${setToggleHamburger ? "translate-y-0 " : "-translate-y-full"}  w-[100%] fixed top-20 z-[45] rounded-b-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-br border-gray-100 text-slate-200 md:hidden`}
       >
         <ul className="flex flex-col items-center my-5 gap-5 h-[100%] w-[100%]">
           <li className="">
@@ -40,7 +44,7 @@ function HamNav({ toggleHamburger, setToggleHamburger }) {
               className={"border-none text-xl font-bold py-3 px-10"}
               active={"lavender"}
               onClick={() => {
-                navigate("experiences");
+                navigate("forums");
                 setToggleHamburger(false);
               }}
             >
@@ -53,7 +57,7 @@ function HamNav({ toggleHamburger, setToggleHamburger }) {
               className={"border-none text-xl font-bold py-3 px-10"}
               active={"lavender"}
               onClick={() => {
-                navigate("experiences");
+                navigate("companies");
                 setToggleHamburger(false);
               }}
             >
