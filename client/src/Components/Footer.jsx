@@ -3,8 +3,15 @@ import { FaLinkedin } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "../Slices/userSlice";
+import toast from "react-hot-toast";
 
 function Footer() {
+  const navigate = useNavigate();
+  const user = useSelector(selectUser);
+
   return (
     <div className="mt-20 mx-6 md:w-[80%] md:mx-auto">
       <div className="flex flex-col gap-3 md:flex-row md:justify-between md:items-center">
@@ -18,7 +25,17 @@ function Footer() {
 
         <button className="bg-light_purple text-lg flex items-center justify-center gap-1 rounded-3xl py-[10px] px-[15px] w-[200px] md:text-xl md:w-[220px]">
           <FaGraduationCap color="#202B47" size={20} />
-          <p className="text-light_gray font-mdeium">Enter AcademIQ</p>
+          <button
+            onClick={() => {
+              if (!user.name) 
+              navigate("/login");
+              else
+              toast.success("You're already logged in")
+            }}
+            className="text-light_gray font-medium"
+          >
+            Enter AcademIQ
+          </button>
         </button>
       </div>
 

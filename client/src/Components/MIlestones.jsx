@@ -2,7 +2,7 @@ import "./../../src/index.css";
 
 function Milestones() {
   return (
-    <div className="mx-5 mt-20 md:flex md:justify-center md:gap-[200px] md:w-80% md:mx-auto">
+    <div className="mx-5 mt-20 md:flex md:justify-center md:gap-[200px] md:w-80% md:mx-auto my-[200px]">
       <div>
         <div className="md:flex md:flex-col">
           <p className="text-slate-200/50 text-center">What AcademIQ provides</p>

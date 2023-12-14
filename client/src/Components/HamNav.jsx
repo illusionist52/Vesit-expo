@@ -14,11 +14,11 @@ function HamNav({ toggleHamburger, setToggleHamburger }) {
   if (toggleHamburger)
     return (
       <motion.div
-        variants={navVariants}
+        
         initial="hidden"
         whileInView="show"
-        whileTap="hidden"
-        className={`w-[100%] absolute z-50 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-gray-100 text-slate-200 md:hidden`}
+
+        className={`w-[100%] fixed top-20 z-50 rounded-b-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-br border-gray-100 text-slate-200 md:hidden`}
       >
         <ul className="flex flex-col items-center my-5 gap-5 h-[100%] w-[100%]">
           <li className="">

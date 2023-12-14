@@ -2,7 +2,7 @@ import './../../src/index.css'
 
 function Steps() {
   return (
-  <div className='mt-20'>
+  <div className='my-[200px]'>
     <p className='text-slate-200/50 text-center'>How AcademIQ works</p>
     <h1 className='text-4xl font-bold text-slate-200 text-center md:text-6xl md:mb-10'>Write & share your Moments</h1>
     <div className="relative">

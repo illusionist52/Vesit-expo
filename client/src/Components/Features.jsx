@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 function Features() {
   return (
-    <div className="flex flex-col p-10 mt-10 md:flex-row md:justify-center md:items-center md:w-80% md:mx-auto">
+    <div className="flex flex-col p-10 my-[200px] md:flex-row md:justify-center md:items-center md:w-80% md:mx-auto">
       <div className="md:flex md:flex-col">
         <p className="text-slate-200/50 text-center">NILANCHAL</p>
         <motion.h2
@@ -16,8 +16,8 @@ function Features() {
 
         <div className="flex flex-col justify-center items-center gap-2 md:flex-row">
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
             className="flex flex-col max-w-md gap-3 p-3 items-center"
           >
@@ -37,10 +37,10 @@ function Features() {
             </p>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
-            className="flex flex-col max-w-md gap-3 p-3 items-center"
+            className="flex flex-col gap-3 p-3 items-center"
           >
             <img
               className="md:w-[200px]"
@@ -59,8 +59,8 @@ function Features() {
       </div>
 
       <motion.div
-        initial={{ opacity: 0, x: -80 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: -80 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 2.5 }}
         className="flex items-center justify-center"
       >

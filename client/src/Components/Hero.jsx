@@ -1,9 +1,27 @@
 import { motion } from "framer-motion";
 import './../../src/index.css'
+import { useNavigate } from "react-router-dom"
+import { selectUser } from '../Slices/userSlice';
+import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 function Hero() {
+  const navigate = useNavigate();
+  const user = useSelector(selectUser)
+
+  function cta(){
+    if(!user.name){
+      navigate("/signup")
+    }else
+    toast.success("You're already logged in")
+  }
+
+
+
   return (
-    <div className="h-[57dvh]">
+    <div className="h-[57dvh] my-[50px] md:my-[100px]">
+      <div className='absolute top-[100px] w-[200px] h-[160px] -z-10 inset-0 gradient-01 md:w-[500px]'></div>
+
       <div className="flex flex-col justify-center h-[500px] container mx-auto p-6 font-black md:items-center">
         {/* MAIN HEADING */}
         <motion.h1
@@ -29,7 +47,7 @@ function Hero() {
         </div>
 
         {/* SUB HEADING */}
-        <motion.p initial={{opacity:0, x:40}} whileInView={{opacity:1, x: 0}} transition={{duration: 2}} className="mb-8 text-left text-sm font-medium md:max-w-2xl md:text-center md:text-lg ">
+        <motion.p initial={{opacity:0, y:40}} whileInView={{opacity:1, y: 0}} transition={{duration: 2}} className="mb-8 text-left text-sm font-medium md:max-w-2xl md:text-center md:text-lg ">
           Unlock senior student narratives, diverse company rosters, and a
           dynamic forum empowering you for confident placements and limitless
           career opportunities!
@@ -48,8 +66,9 @@ function Hero() {
         </div>
 
         {/* CALL TO ACTION */}
-        <div className="">
-          <motion.button initial={{opacity:0, y: 20}} whileInView={{opacity:1, y:0}} transition={{duration: 2}} className="md:py-2 md:px-5 py-2 px-4 bg-lavender rounded-xl text-slate-200 hover:bg-dark_purple active:bg-light_purple">Get Started</motion.button>
+        <div className="flex gap-3">
+          <motion.button initial={{opacity:0, y: 20}} whileInView={{opacity:1, y:0}} transition={{duration: 2}} onClick={cta} className="md:py-4 md:px-8 py-2 px-4 bg-gradient-to-r from-lavender via-pink-400 to-dark_purple rounded-xl text-slate-200 hover:bg-dark_purple active:bg-light_purple">Get Started</motion.button>
+          <motion.button initial={{opacity:0, y: 20}} whileInView={{opacity:1, y:0}} transition={{duration: 2}} onClick={()=>navigate("/experiences")} className="md:py-4 md:px-4 py-2 px-4 border-2 border-solid border-slate-200 rounded-xl bg-light_gray">Explore more &rarr;</motion.button>
         </div>
       </div>
     </div>
