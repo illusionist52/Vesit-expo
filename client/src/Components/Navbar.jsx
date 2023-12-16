@@ -36,7 +36,7 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
     >
       <NavLink to="/">
         {" "}
-        <img className="w-[200px]" src="./../../LOGO.png" />
+        <img className="w-[300px]" src="./../../LOGO.png" />
       </NavLink>
       <ul className="flex md:items-center md:h-5 gap-7 justify-around">
         <li>
@@ -76,11 +76,11 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
       )}
 
       {user.name && (
-        <div className="flex gap-3 justify-center items-center">
+        <div className="flex justify-center items-center">
           <NavLink to="profile">
-            <div className="flex gap-2 justify-center p-1 border-2 border-solid rounded-3xl items-center">
-              <h2 className="text-dark_purple ml-2 font-bold text-xl">{user.name}</h2>
+            <div className="flex gap-1 w-[150px] justify-center md:p-1 border-2 border-solid rounded-3xl items-center">
               <img src={profile.avatar ?`http://localhost:3002/${profile.avatar}` : "../../public/user.png"} className="w-[50px] rounded-full" alt={`${user.name}'s PHOTO`}/>
+              <h2 className="text-dark_purple mb-1 mr-1 font-bold text-xl">{user.name}</h2>
             </div>
           </NavLink>
           <Button
