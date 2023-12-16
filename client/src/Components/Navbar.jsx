@@ -36,7 +36,7 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
     >
       <NavLink to="/">
         {" "}
-        <img className="w-[300px]" src="./../../LOGO.png" />
+        <img className="w-[200px]" src="./../../LOGO.png" />
       </NavLink>
       <ul className="flex md:items-center md:h-5 gap-7 justify-around">
         <li>
