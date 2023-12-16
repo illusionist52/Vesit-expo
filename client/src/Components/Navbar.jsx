@@ -76,7 +76,7 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
       )}
 
       {user.name && (
-        <div className="flex justify-center items-center">
+        <div className="flex gap-3 justify-center items-center">
           <NavLink to="profile">
             <div className="flex gap-1 w-[150px] justify-center md:p-1 border-2 border-solid rounded-3xl items-center">
               <img src={profile.avatar ?`http://localhost:3002/${profile.avatar}` : "../../public/user.png"} className="w-[50px] rounded-full" alt={`${user.name}'s PHOTO`}/>
