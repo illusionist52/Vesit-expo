@@ -78,8 +78,8 @@ function Navbar({ setToggleHamburger, toggleHamburger }) {
       {user.name && (
         <div className="flex gap-3 justify-center items-center">
           <NavLink to="profile">
-            <div className="flex gap-2 justify-center items-center">
-              <h2 className="text-lavender font-bold text-xl">{user.name}</h2>
+            <div className="flex gap-2 justify-center p-1 border-2 border-solid rounded-3xl items-center">
+              <h2 className="text-dark_purple ml-2 font-bold text-xl">{user.name}</h2>
               <img src={profile.avatar ?`http://localhost:3002/${profile.avatar}` : "../../public/user.png"} className="w-[50px] rounded-full" alt={`${user.name}'s PHOTO`}/>
             </div>
           </NavLink>

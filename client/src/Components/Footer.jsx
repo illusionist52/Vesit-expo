@@ -23,19 +23,14 @@ function Footer() {
           <div className="gradient-04"></div>
         </div>
 
-        <button className="bg-light_purple text-lg flex items-center justify-center gap-1 rounded-3xl py-[10px] px-[15px] w-[200px] md:text-xl md:w-[220px]">
-          <FaGraduationCap color="#202B47" size={20} />
-          <button
-            onClick={() => {
+        <button  onClick={() => {
               if (!user.name) 
               navigate("/login");
               else
               toast.success("You're already logged in")
-            }}
-            className="text-light_gray font-medium"
-          >
-            Enter AcademIQ
-          </button>
+            }} className="bg-light_purple text-lg text-light_gray flex items-center justify-center gap-1 rounded-3xl py-[10px] px-[15px] w-[200px] md:text-xl md:w-[220px]">
+          <FaGraduationCap color="#202B47" size={20} />
+         Enter AcademIQ
         </button>
       </div>
 
